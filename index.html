@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Igreja Gileade Tabapuá</title>
+
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      header {
+        background: url("imagens/gabi-repaska-GrO_7JGfODc-unsplash2.jpg") right
+          center/cover no-repeat;
+        height: 60vh;
+        color: white;
+      }
+      header .overlay {
+        background: rgba(0, 0, 0, 0.6);
+        height: 100%;
+      }
+      .section-title {
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img
+            src="imagens/marek-studzinski-pcWk8B6fwtM-unsplash.jpg"
+            alt="Logo"
+            width="40"
+            height="40"
+            class="me-2 rounded-circle"
+          />
+          <span>Igreja Cristã Gileade</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#menu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#sobre">Sobre</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#departamentos">Departamentos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#agenda">Agenda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contato">Contato</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header>
+      <div class="overlay d-flex align-items-center justify-content-center">
+        <div class="text-center">
+          <h1 class="display-4">Bem-vindo à nossa Igreja</h1>
+          <p class="lead">Temática 2026: Koinonia - Comunhão</p>
+          <button
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#modalKoinonia"
+          >
+            O que é Koinonia? Veja logo abaixo em diferentes contextos
+          </button>
+          <br />
+          <hr />
+          <button
+            class="btn btn-primary me-2"
+            data-bs-toggle="modal"
+            data-bs-target="#modalPoetica"
+          >
+            Poética
+          </button>
+
+          <button
+            class="btn btn-secondary me-2"
+            data-bs-toggle="modal"
+            data-bs-target="#modalTeologica"
+          >
+            Teológica
+          </button>
+
+          <button
+            class="btn btn-danger me-2"
+            data-bs-toggle="modal"
+            data-bs-target="#modalForte"
+          >
+            Forte
+          </button>
+
+          <button
+            class="btn btn-success me-2"
+            data-bs-toggle="modal"
+            data-bs-target="#modalPoeticoTeologica"
+          >
+            Poético / Teológica
+          </button>
+
+          <button
+            class="btn btn-warning me-2"
+            data-bs-toggle="modal"
+            data-bs-target="#modalJovem"
+          >
+            Jovem
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- SOBRE -->
+    <section id="sobre" class="container py-5">
+      <h2 class="section-title">Sobre a Igreja</h2>
+      <p>
+        Somos uma igreja comprometida com o evangelho, com a comunhão e com o
+        serviço ao próximo. Nossa missão é levar a Palavra de Deus a todas as
+        famílias.
+      </p>
+    </section>
+
+    <!-- DEPARTAMENTOS -->
+    <section id="departamentos" class="bg-light py-5">
+      <div class="container">
+        <h2 class="section-title">Ministérios</h2>
+
+        <div class="row g-4">
+          <div class="col-md-3 col-sm-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Louvor</h5>
+                <p class="card-text">
+                  Equipe responsável pela adoração e música nos cultos.
+                </p>
+                <a href="louvor.html" class="btn btn-outline-primary"
+                  >Ver mais</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Infantil</h5>
+                <p class="card-text">
+                  Ensino bíblico e atividades para crianças.
+                </p>
+                <a href="infantil.html" class="btn btn-outline-primary"
+                  >Ver mais</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Jovens</h5>
+                <p class="card-text">
+                  Encontros, estudos e eventos para jovens.
+                </p>
+                <a href="jovens.html" class="btn btn-outline-primary"
+                  >Ver mais</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Homens</h5>
+                <p class="card-text">
+                  Encontros e ações voltadas para os homens da igreja.
+                </p>
+                <a href="homens.html" class="btn btn-outline-primary"
+                  >Ver mais</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Mulheres</h5>
+                <p class="card-text">
+                  Reuniões, campanhas e projetos voltados para mulheres.
+                </p>
+                <a href="mulheres.html" class="btn btn-outline-primary"
+                  >Ver mais</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Escola Bíblica</h5>
+                <p class="card-text">
+                  Eventos, cursos e encontros para fortalecimento familiar.
+                </p>
+                <a href="escola-biblica.html" class="btn btn-outline-primary"
+                  >Ver mais</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Casais</h5>
+                <p class="card-text">
+                  Aulas, classes e estudos para todas as idades.
+                </p>
+                <a href="casais.html" class="btn btn-outline-primary"
+                  >Ver mais</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Evangelismo</h5>
+                <p class="card-text">Projetos missionários e evangelísticos.</p>
+                <a href="evangelismo.html" class="btn btn-outline-primary"
+                  >Ver mais</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Mídia</h5>
+                <p class="card-text">
+                  Transmissões, som, projeção e comunicação.
+                </p>
+                <a href="midia.html" class="btn btn-outline-primary"
+                  >Ver mais</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Ação Social</h5>
+                <p class="card-text">
+                  Projetos de apoio à comunidade e assistência.
+                </p>
+                <a href="acao-social.html" class="btn btn-outline-primary"
+                  >Ver mais</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Tesouraria</h5>
+                <p class="card-text">
+                  Administração financeira e transparência nos recursos da
+                  igreja.
+                </p>
+                <a href="tesouraria.html" class="btn btn-outline-primary"
+                  >Ver mais</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Secretaria</h5>
+                <p class="card-text">
+                  Organização administrativa, registros e suporte aos ministérios.
+                </p>
+                <a href="secretaria.html" class="btn btn-outline-primary"
+                  >Ver mais</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AGENDA -->
+    <section id="agenda" class="container py-5">
+      <h2 class="section-title">Agenda da Semana</h2>
+
+      <ul class="list-group">
+        <li class="list-group-item">Domingo – Culto às 17h30min</li>
+        <li class="list-group-item">Quarta – Consagração às 20h</li>
+        <li class="list-group-item">Quinta – Oração às 20h</li>
+        <li class="list-group-item">Sábado – Encontro dos Jovens às 18h</li>
+      </ul>
+    </section>
+
+    <!-- LOCALIZAÇÃO -->
+    <section id="contato" class="bg-dark text-white py-5">
+      <div class="container">
+        <h2 class="section-title">Contato</h2>
+        <p><strong>Endereço:</strong> Rua Um-D, 77 – Tabapuá CEP 61.635-060</p>
+        <p><strong>Telefone:</strong> (00) 00000-0000</p>
+        <p><strong>Email:</strong> contato@igreja.com</p>
+
+        <h4 class="text-center">Localização</h4>
+
+        <div class="d-flex justify-content-center mt-1">
+          <!-- Cole aqui o iframe do Google Maps -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.3171643840683!2d-38.616365596679984!3d-3.740909528387893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7c74b09ce94afdf%3A0x6873647e49355871!2sIgreja%20Crist%C3%A3%20Gileade!5e0!3m2!1spt-BR!2sbr!4v1766502327487!5m2!1spt-BR!2sbr"
+            width="500"
+            height="350"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-3 bg-secondary text-white">
+      &copy;2025 Igreja Gileade Tabapuá – Todos os direitos reservados
+    </footer>
+
+    <div
+      class="modal fade modal-poetica"
+      id="modalPoetica"
+      tabindex="-1"
+      data-bs-backdrop="static"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Versão Poética</h5>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <div class="modal-body">
+            <p>
+              <strong>Koinonia</strong> é o encontro de almas que se reconhecem
+              no amor de Cristo. É o abraço silencioso que cura, a mesa
+              compartilhada que fortalece, a fé que se torna ponte entre
+              corações.
+            </p>
+
+            <p>
+              É caminhar lado a lado, dividir o pão e multiplicar esperança. É
+              ser família, mesmo sem laços de sangue, unidos pelo Espírito que
+              nos faz um só corpo.
+            </p>
+
+            <p>Koinonia é comunhão viva — onde Deus habita entre nós.</p>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade modal-teologica"
+      id="modalTeologica"
+      tabindex="-1"
+      data-bs-backdrop="static"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Versão Teológica</h5>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <div class="modal-body">
+            <p>
+              <strong>Koinonia</strong> é um termo grego do Novo Testamento que
+              significa comunhão, participação e parceria espiritual. Representa
+              a união dos cristãos em torno da fé, do amor e da missão de
+              Cristo.
+            </p>
+
+            <p>
+              É a vida compartilhada da igreja primitiva: oração, ensino,
+              generosidade, cuidado mútuo e convivência sincera. É a expressão
+              prática da unidade do Corpo de Cristo.
+            </p>
+
+            <p>
+              Viver koinonia é participar ativamente da obra de Deus e da vida
+              da comunidade cristã.
+            </p>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade modal-forte"
+      id="modalForte"
+      tabindex="-1"
+      data-bs-backdrop="static"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Versão Forte</h5>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <div class="modal-body">
+            <p>
+              <strong>Koinonia</strong> é o tipo de comunhão que transforma
+              vidas. Não é superficial, não é ocasional — é compromisso, entrega
+              e verdade.
+            </p>
+
+            <p>
+              É estar presente quando dói, é sustentar quando falta força, é
+              celebrar quando Deus faz o impossível. É viver como um só corpo,
+              onde cada membro importa e cada gesto ecoa eternidade.
+            </p>
+
+            <p>
+              Koinonia é a marca da igreja viva — onde o amor não é discurso, mas prática diária.
+            </p>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade modal-poetico-teologica"
+      id="modalPoeticoTeologica"
+      tabindex="-1"
+      data-bs-backdrop="static"
+    >
+      <div class="modal-dialog modal-dialog-centered" text="align-items-center">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Poético + Teológica</h5>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <div class="modal-body">
+            <p>
+              <strong>Koinonia</strong> é a comunhão que nasce do Espírito e
+              floresce no coração. É doutrina viva, transformada em afeto,
+              serviço e unidade.
+            </p>
+
+            <p>
+              É a igreja primitiva respirando através de nós: partindo o pão,
+              compartilhando a fé, caminhando juntos em amor.
+            </p>
+
+            <p>
+              É poesia que se torna prática, teologia que se torna vida, e vida
+              que se torna testemunho.
+            </p>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade modal-jovem" id="modalJovem" tabindex="-1" data-bs-backdrop="static">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Versão Jovem</h5>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <div class="modal-body">
+            <p>
+              <strong>Koinonia</strong> é viver a fé juntos, de verdade. É estar
+              conectado não só no domingo, mas na vida.
+            </p>
+
+            <p>
+              É amizade com propósito, apoio nos dias difíceis, risadas, oração,
+              conversa sincera e gente que caminha junto.
+            </p>
+
+            <p>
+              Koinonia é comunidade — é família que a gente escolhe no Reino.
+            </p>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade modal-koinonia" id="modalKoinonia" tabindex="-1" aria-labelledby="modalKoinoniaLabel" aria-hidden="true" data-bs-backdrop="static">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalKoinoniaLabel">O que é Koinonia?</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <p>
+              <strong>Koinonia</strong> é uma palavra grega que significa
+              comunhão, participação e unidade. No contexto cristão, representa
+              a vida compartilhada entre irmãos, marcada por amor, serviço,
+              apoio mútuo e relacionamento profundo com Deus e com o próximo.
+            </p>
+
+            <p>
+              É mais do que estar junto — é viver em parceria, caminhar lado a
+              lado e construir uma fé que se expressa em comunidade.
+            </p>
+
+            <p>
+              <strong>Koinonia</strong> é mais do que uma palavra — é um
+              encontro de almas. É o lugar onde corações se reconhecem, onde a
+              fé se torna abraço e onde a vida deixa de ser caminhada solitária
+              para se tornar jornada compartilhada.
+            </p>
+
+            <p>
+              É o vínculo que une irmãos e irmãs em Cristo, não apenas por
+              afinidade, mas por propósito. É dividir o pão, a oração, as
+              lágrimas e as alegrias. É ser parte de algo maior do que nós
+              mesmos.
+            </p>
+
+            <p>
+              Koinonia é comunhão viva, é família espiritual, é o eco do amor de
+              Deus se espalhando entre nós.
+            </p>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
