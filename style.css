@@ -159,3 +159,14 @@
   border: 0;
 }
 
+/*CARTÃO DO PASTOR ESPECIAL*/
+
+.pastor-card {
+  border: 2px solid #b8860b;
+  transition: transform 0.2s ease-in-out;
+}
+
+.pastor-card:hover {
+  transform: scale(1.05);
+  border-color: #d4a017;
+}
