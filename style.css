@@ -127,7 +127,7 @@
   max-width: 260px;
   width: 100%;
   height: auto;
-  margin: 40 auto 40; /* SEM espaço embaixo da imagem */
+  margin: 40px auto 20px; /* SEM espaço embaixo da imagem */
   display: block;
 }
 
@@ -141,8 +141,10 @@
   margin: 0; /* SEM margem extra embaixo */
 }
 
-.cabecalho-principal .btn.btn-primary {
-  margin: 6px 0 6px;
+.cabecalho-principal {
+  min-height: auto; 
+  height: auto;
+  padding-bottom: 20px; /* controla o espaço inferior */
 }
 
 /* BOTÕES DE CONTEXTO */
@@ -169,8 +171,49 @@
 /* ============================= */
 
 @media (max-width: 576px) {
-  .display-4 {
-    font-size: 1.8rem;
+  .overlay {
+    gap: 15px; /* reduz o espaço entre os elementos */
+    padding-bottom: 10px;
+  }
+
+
+  .lead {
+    font-size: 1rem;
+  }
+
+  .logo-cabecalho {
+    max-width: 180px;
+  }
+
+  .botao-contexto .btn {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+}
+
+/* Suas regras normais aqui... */
+
+.overlay {
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 30px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+/* ... outras regras ... */
+
+/* ============================= */
+/*   RESPONSIVIDADE (CELULAR)    */
+/* ============================= */
+
+@media (max-width: 576px) {
+  .overlay {
+    gap: 15px;
+    padding-bottom: 10px;
   }
 
   .lead {
@@ -187,3 +230,44 @@
   }
 }
 
+/* Layout principal permanece intacto */
+.botao-contexto {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.botao-contexto .btn {
+  min-width: 120px;
+  padding: 6px 10px;
+  font-size: 0.95rem;
+}
+
+/* ============================= */
+/*   RESPONSIVIDADE (CELULAR)    */
+/* ============================= */
+@media (max-width: 576px) {
+  .botao-contexto .btn {
+    flex: 1 1 calc(50% - 8px); /* dois por linha */
+    min-width: 140px;
+    text-align: center;
+  }
+
+  .overlay {
+    gap: 15px;
+    padding-bottom: 10px;
+  }
+
+  .logo-cabecalho {
+    max-width: 180px;
+  }
+
+  .display-4 {
+    font-size: 1.8rem;
+  }
+
+  .lead {
+    font-size: 1rem;
+  }
+}
