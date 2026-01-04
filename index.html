@@ -34,11 +34,10 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="#">
-          <img
-            src="imagens/marek-studzinski-pcWk8B6fwtM-unsplash.jpg"
-            alt="Logo"
-            width="40"
-            height="40"
+          <img src="imagens/logo1.png"
+            alt="Logo Igreja Gileade Tabapuá"
+            width="60"
+            height="60"
             class="me-2 rounded-circle"
           />
           <span>Igreja Cristã Gileade</span>
@@ -72,62 +71,24 @@
     </nav>
 
     <!-- HEADER -->
-    <header>
-      <div class="overlay d-flex align-items-center justify-content-center">
-        <div class="text-center">
-          <h1 class="display-4">Bem-vindo à nossa Igreja</h1>
-          <p class="lead">Temática 2026: Koinonia - Comunhão</p>
-          <button
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#modalKoinonia"
-          >
-            O que é Koinonia? Veja logo abaixo em diferentes contextos
-          </button>
-          <br />
-          <hr />
-          <button
-            class="btn btn-primary me-2"
-            data-bs-toggle="modal"
-            data-bs-target="#modalPoetica"
-          >
-            Poética
-          </button>
+<header class="cabecalho-principal">
+  <div class="overlay text-center">
+    <img src="imagens/logo1-limpa-y.png" alt="Logo da Igreja" class="logo-cabecalho"/>
 
-          <button
-            class="btn btn-secondary me-2"
-            data-bs-toggle="modal"
-            data-bs-target="#modalTeologica"
-          >
-            Teológica
-          </button>
+    <h1 class="display-3">Bem-vindo à nossa Igreja</h1>
+    <p class="lead">Temática 2026: <strong>Koinonia – Comunhão</strong></p>
 
-          <button
-            class="btn btn-danger me-2"
-            data-bs-toggle="modal"
-            data-bs-target="#modalForte"
-          >
-            Forte
-          </button>
+    <button class="btn btn-primary">O que é Koinonia? Veja logo abaixo em diferentes contextos</button>
 
-          <button
-            class="btn btn-success me-2"
-            data-bs-toggle="modal"
-            data-bs-target="#modalPoeticoTeologica"
-          >
-            Poético / Teológica
-          </button>
-
-          <button
-            class="btn btn-warning me-2"
-            data-bs-toggle="modal"
-            data-bs-target="#modalJovem"
-          >
-            Jovem
-          </button>
-        </div>
-      </div>
-    </header>
+    <div class="botao-contexto">
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPoetica">Poética</button>
+      <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalTeologica">Teológica</button>
+      <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalForte">Forte</button>
+      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPoeticoTeologica">Poético / Teológica</button>
+      <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalJovem">Jovem</button>
+    </div>
+  </div>
+</header>
 
     <!-- SOBRE -->
     <section id="sobre" class="container py-5">

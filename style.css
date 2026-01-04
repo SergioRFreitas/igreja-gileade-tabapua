@@ -1,99 +1,26 @@
+/* ============================= */
+/*   MODAIS - ESTILOS GERAIS     */
+/* ============================= */
 
-/* Modal Poética (btn-primary - azul suave) */
-.modal-poetica .modal-header {
-    background-color: #0d6efd20; /* azul bem suave */
-}
-.modal-poetica .modal-title {
-    color: #0d6efd; text-align: center;
-  width: 100%;
-}
-.modal-poetica .modal-body p {
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 1rem;
-  text-align: justify;
-  animation: fadeIn 3s ease-in-out;
-}
+.modal-poetica .modal-header { background-color: #0d6efd20; }
+.modal-poetica .modal-title { color: #0d6efd; text-align: center; width: 100%; }
 
+.modal-teologica .modal-header { background-color: #6c757d20; }
+.modal-teologica .modal-title { color: #000; text-align: center; width: 100%; }
 
-/* Modal Teológica (btn-secondary - cinza suave) */
-.modal-teologica .modal-header {
-    background-color: #6c757d20;
-}
-.modal-teologica .modal-title {
-    color: #000000; text-align: center;
-  width: 100%;
-}
-.modal-teologica .modal-body p {
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 1rem;
-  text-align: justify;
-  animation: fadeIn 3s ease-in-out;
-}
+.modal-forte .modal-header { background-color: #dc354520; }
+.modal-forte .modal-title { color: #0a0001; text-align: center; width: 100%; }
 
+.modal-poetico-teologica .modal-header { background-color: #00000020; }
+.modal-poetico-teologica .modal-title { color: #000805; text-align: center; width: 100%; }
 
-/* Modal Forte (btn-danger - vermelho suave) */
-.modal-forte .modal-header {
-    background-color: #dc354520;
-}
-.modal-forte .modal-title {
-    color: #0a0001; text-align: center;
-  width: 100%;
-}
-.modal-forte .modal-body p {
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 1rem;
-  text-align: justify;
-  animation: fadeIn 3s ease-in-out;
-}
+.modal-jovem .modal-header { background-color: #ffc10720; }
+.modal-jovem .modal-title { color: #221b05; text-align: center; width: 100%; }
 
-/* Animação suave ao abrir o modal */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Modal Poético + Teológico (btn-success - verde suave) */
-.modal-poetico-teologica .modal-header {
-    background-color: #00000020;
-}
-.modal-poetico-teologica .modal-title {
-    color: #000805; text-align: center;
-  width: 100%;
-}
-.modal-poetico-teologica .modal-body p {
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 1rem;
-  text-align: justify;
-  animation: fadeIn 3s ease-in-out;
-}
-
-
-/* Modal Jovem (btn-warning - amarelo suave) */
-.modal-jovem .modal-header {
-    background-color: #ffc10720; 
-}
-.modal-jovem .modal-title {
-    color: #221b05; text-align: center;
-  width: 100%;
-}
+.modal-poetica .modal-body p,
+.modal-teologica .modal-body p,
+.modal-forte .modal-body p,
+.modal-poetico-teologica .modal-body p,
 .modal-jovem .modal-body p {
   font-family: 'Segoe UI', sans-serif;
   font-size: 1.05rem;
@@ -104,48 +31,52 @@
   animation: fadeIn 3s ease-in-out;
 }
 
-
-
 .modal-footer {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* ============================= */
-/*   DEGRADÊS DOS MODAIS (SEM TRANSPARÊNCIA)   */
+/*   DEGRADÊS DOS MODAIS         */
 /* ============================= */
 
-/* Modal Poético (azul) */
 .modal-poetico .modal-content {
-    background: linear-gradient(135deg, #0d6efd, #6ea8fe); text-align: justify;
+  background: linear-gradient(135deg, #0d6efd, #6ea8fe);
+  text-align: justify;
 }
 
-/* Modal Teológico (cinza) */
 .modal-teologica .modal-content {
-    background: linear-gradient(135deg, #6c757d, #adb5bd); text-align: justify;
+  background: linear-gradient(135deg, #6c757d, #adb5bd);
+  text-align: justify;
 }
 
-/* Modal Poético + Teológica (verde) */
 .modal-poetico-teologica .modal-content {
-    background: linear-gradient(135deg, #198754, #71c29a); text-align: justify;
+  background: linear-gradient(135deg, #198754, #71c29a);
+  text-align: justify;
 }
 
-/* Modal Forte (vermelho) */
 .modal-forte .modal-content {
-    background: linear-gradient(135deg, #dc3545, #f28b94); text-align: justify;
+  background: linear-gradient(135deg, #dc3545, #f28b94);
+  text-align: justify;
 }
 
-/* Modal Jovem (amarelo) */
 .modal-jovem .modal-content {
-    background: linear-gradient(135deg, #ffc107, #ffe082); text-align: justify;
+  background: linear-gradient(135deg, #ffc107, #ffe082);
+  text-align: justify;
 }
 
-/*atualização para responsividade do mapa de localização*/
+/* ============================= */
+/*   MAPA RESPONSIVO             */
+/* ============================= */
+
 .map-responsive {
   position: relative;
-  padding-bottom: 56.25%; /* proporção 16:9 */
+  padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
 }
@@ -159,7 +90,9 @@
   border: 0;
 }
 
-/*CARTÃO DO PASTOR ESPECIAL*/
+/* ============================= */
+/*   CARTÃO DO PASTOR            */
+/* ============================= */
 
 .pastor-card {
   border: 2px solid #b8860b;
@@ -170,3 +103,87 @@
   transform: scale(1.05);
   border-color: #d4a017;
 }
+
+/* ============================= */
+/*   CABEÇALHO DA IGREJA         */
+/* ============================= */
+
+.cabecalho-principal {
+  padding: 0;
+}
+
+.overlay {
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 30px; /* dimini o espaço ENTRE logo, título e texto */
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+.logo-cabecalho {
+  max-width: 260px;
+  width: 100%;
+  height: auto;
+  margin: 40 auto 40; /* SEM espaço embaixo da imagem */
+  display: block;
+}
+
+.display-4 {
+  font-size: 2.2rem;
+  margin: 0; /* SEM margem em cima e embaixo */
+}
+
+.lead {
+  font-size: 1.1rem;
+  margin: 0; /* SEM margem extra embaixo */
+}
+
+.cabecalho-principal .btn.btn-primary {
+  margin: 6px 0 6px;
+}
+
+/* BOTÕES DE CONTEXTO */
+.botao-contexto {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.botao-contexto .btn {
+  min-width: 120px;
+  padding: 6px 10px;
+  font-size: 0.95rem;
+}
+
+.botao-contexto .btn-primary {
+  margin: 0 !important;
+}
+
+/* ============================= */
+/*   RESPONSIVIDADE              */
+/* ============================= */
+
+@media (max-width: 576px) {
+  .display-4 {
+    font-size: 1.8rem;
+  }
+
+  .lead {
+    font-size: 1rem;
+  }
+
+  .logo-cabecalho {
+    max-width: 180px;
+  }
+
+  .botao-contexto .btn {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+}
+
