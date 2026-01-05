@@ -110,6 +110,9 @@
 
 .cabecalho-principal {
   padding: 0;
+  min-height: auto;
+  height: auto;
+  padding-bottom: 20px;
 }
 
 .overlay {
@@ -118,7 +121,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 30px; /* dimini o espaço ENTRE logo, título e texto */
+  gap: 30px;
   background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
 }
@@ -127,33 +130,29 @@
   max-width: 260px;
   width: 100%;
   height: auto;
-  margin: 40px auto 20px; /* SEM espaço embaixo da imagem */
+  margin: 40px auto 20px;
   display: block;
 }
 
 .display-4 {
   font-size: 2.2rem;
-  margin: 0; /* SEM margem em cima e embaixo */
+  margin: 0;
 }
 
 .lead {
   font-size: 1.1rem;
-  margin: 0; /* SEM margem extra embaixo */
+  margin: 0;
 }
 
-.cabecalho-principal {
-  min-height: auto; 
-  height: auto;
-  padding-bottom: 20px; /* controla o espaço inferior */
-}
+/* ============================= */
+/*   BOTÕES DE CONTEXTO          */
+/* ============================= */
 
-/* BOTÕES DE CONTEXTO */
 .botao-contexto {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
-  margin-top: 4px;
 }
 
 .botao-contexto .btn {
@@ -167,92 +166,22 @@
 }
 
 /* ============================= */
-/*   RESPONSIVIDADE              */
+/*   NAVBAR - AJUSTES DE FONTE   */
 /* ============================= */
 
-@media (max-width: 576px) {
-  .overlay {
-    gap: 15px; /* reduz o espaço entre os elementos */
-    padding-bottom: 10px;
-  }
-
-
-  .lead {
-    font-size: 1rem;
-  }
-
-  .logo-cabecalho {
-    max-width: 180px;
-  }
-
-  .botao-contexto .btn {
-    flex: 1 1 100%;
-    text-align: center;
-  }
+.navbar-brand span {
+  font-size: 0.75rem; /* ajuste aqui */
 }
 
-/* Suas regras normais aqui... */
-
-.overlay {
-  padding: 15px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 30px;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #fff;
-}
-
-/* ... outras regras ... */
-
-/* ============================= */
-/*   RESPONSIVIDADE (CELULAR)    */
-/* ============================= */
-
-@media (max-width: 576px) {
-  .overlay {
-    gap: 15px;
-    padding-bottom: 10px;
-  }
-
-  .lead {
-    font-size: 1rem;
-  }
-
-  .logo-cabecalho {
-    max-width: 180px;
-  }
-
-  .botao-contexto .btn {
-    flex: 1 1 100%;
-    text-align: center;
-  }
-}
-
-/* Layout principal permanece intacto */
-.botao-contexto {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-}
-
-.botao-contexto .btn {
-  min-width: 120px;
-  padding: 6px 10px;
-  font-size: 0.95rem;
+.navbar-nav .nav-link {
+  font-size: 0.9rem;
 }
 
 /* ============================= */
 /*   RESPONSIVIDADE (CELULAR)    */
 /* ============================= */
+
 @media (max-width: 576px) {
-  .botao-contexto .btn {
-    flex: 1 1 calc(50% - 8px); /* dois por linha */
-    min-width: 140px;
-    text-align: center;
-  }
 
   .overlay {
     gap: 15px;
@@ -269,5 +198,11 @@
 
   .lead {
     font-size: 1rem;
+  }
+
+  .botao-contexto .btn {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 140px;
+    text-align: center;
   }
 }
