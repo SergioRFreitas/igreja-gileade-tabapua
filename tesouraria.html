@@ -5,19 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tesouraria</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
+    <link rel="stylesheet" href="style.css" />
     <style>
-        header {
-            background: url('imagens/tesouraria.jpg') center/cover no-repeat;
-            height: 40vh;
-            color: white;
-        }
-        header .overlay {
-            background: rgba(0,0,0,0.6);
-            height: 100%;
-        }
+            header {
+        background: url("imagens/tesouraria.jpg") right
+          center/cover no-repeat;
+        height: 60vh;
+        color: white;
+      }
+      header .overlay {
+        background: rgba(0, 0, 0, 0.6);
+        height: 100%;
+      }
     </style>
+
 </head>
 
 <body>
@@ -25,8 +28,14 @@
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Igreja Cristã Gileade Tabapuá</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+<a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img src="imagens/logo1-limpa-y.png"
+            alt="Logo Igreja Gileade Tabapuá"
+            width="60"
+            height="60"
+            class="me-2 rounded-circle"/>
+          <span>Igreja Cristã Gileade Tabapuá</span>
+        </a>        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
             <span class="navbar-toggler-icon"></span>
         </button>
 
