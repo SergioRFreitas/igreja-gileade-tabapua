@@ -9,21 +9,33 @@
 
     
 <link rel="stylesheet" href="style.css" />
-    <style>
+<style>
+    header {
+    background: url("imagens/arrows-cut.jpeg") center top / 100% auto no-repeat;
+    color: white;
+
+    /* O header agora se ajusta à altura da imagem */
+    height: auto;
+    padding-top: 40%; /* controla a altura proporcional da imagem */
+    position: relative; /* necessário para a overlay */
+}
+
+header .overlay {
+    background: rgba(0, 0, 0, 0.6);
+
+    /* Agora cobre exatamente a área da imagem */
+    position: absolute;
+    inset: 0;
+}
+
+    /* Ajuste para telas menores (celular) */
+    @media (max-width: 768px) {
         header {
-        background: url("imagens/arrows-cut.jpeg") center center/cover no-repeat;
-        height: 20vh;
-        color: white;
-      }
-      header .overlay {
-        background: rgba(0, 0, 0, 0.6);
-        height: 100%;
-      }
-      .section-title {
-        font-weight: bold;
-        margin-bottom: 20px;
-      }
-    </style>
+            min-height: 30vh;
+            background-position: top center; /* se quiser mostrar mais o topo no mobile */
+        }
+    }
+</style>
 </head>
 
 <body>
