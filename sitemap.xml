@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://igrejagileadetabapua.com.br/</loc>
-    <lastmod>2026-01-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://igrejagileadetabapua.com.br/</loc></url>
+  <url><loc>https://igrejagileadetabapua.com.br/acao-social.html</loc></url>
+  <url><loc>https://igrejagileadetabapua.com.br/casais.html</loc></url>
+  <url><loc>https://igrejagileadetabapua.com.br/diretoriageral.html</loc></url>
+  <url><loc>https://igrejagileadetabapua.com.br/escola-biblica.html</loc></url>
+  <url><loc>https://igrejagileadetabapua.com.br/homens.html</loc></url>
+  <url><loc>https://igrejagileadetabapua.com.br/infantil.html</loc></url>
+  <url><loc>https://igrejagileadetabapua.com.br/jovens.html</loc></url>
+  <url><loc>https://igrejagileadetabapua.com.br/leiturabiblica.html</loc></url>
+  <url><loc>https://igrejagileadetabapua.com.br/louvor.html</loc></url>
+  <url><loc>https://igrejagileadetabapua.com.br/midia.html</loc></url>
+  <url><loc>https://igrejagileadetabapua.com.br/mulheres.html</loc></url>
+  <url><loc>https://igrejagileadetabapua.com.br/patrimonial.html</loc></url>
+  <url><loc>https://igrejagileadetabapua.com.br/secretaria.html</loc></url>
+  <url><loc>https://igrejagileadetabapua.com.br/tesouraria.html</loc></url>
 </urlset>
