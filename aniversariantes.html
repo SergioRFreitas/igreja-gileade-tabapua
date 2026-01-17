@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aniversariantes do Mês</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      background: #fdfaf6;
+      font-family: Arial, sans-serif;
+    }
+
+    /* TÍTULO E VERSÍCULO */
+    .tree-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #4e342e;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    .verse {
+      text-align: center;
+      font-style: italic;
+      color: #6d4c41;
+      margin-bottom: 20px;
+    }
+
+    /* SELETOR NO TOPO */
+    .month-filter {
+      width: 100%;
+      text-align: center;
+      margin: 10px auto 30px;
+    }
+
+    .month-filter select {
+      width: 300px;
+      max-width: 90%;
+      margin: 0 auto;
+    }
+
+    /* ÁRVORE COMO FUNDO FIXO */
+    .tree-container {
+      width: 100%;
+      min-height: 100vh;
+      background: url("imagens/arvore-orgânica.png") center top no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      position: relative;
+      z-index: 0;
+      padding-bottom: 60px;
+    }
+
+    /* CAMADA DOS CARDS EM GRADE */
+    .card-layer {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 35px;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* CARD COM FOTO CIRCULAR DE 150px */
+    .leaf {
+      width: 150px;
+      background: #ffffffd9;
+      border: 2px solid #c8b69c;
+      border-radius: 20px;
+      padding: 0px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+      margin: 0 auto;
+    }
+
+    .leaf:hover {
+      transform: scale(1.05);
+    }
+
+    /* FOTO CIRCULAR */
+    .leaf img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 8px;
+}
+
+    /* NOME */
+    .leaf h5 {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #4e342e;
+    }
+
+    /* DATA */
+    .leaf p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #6d4c41;
+    }
+
+    /* CELULAR — LISTA VERTICAL */
+    @media (max-width: 768px) {
+      .card-layer {
+        grid-template-columns: 1fr;
+      }
+
+      .leaf {
+        width: 150px;
+      }
+
+      .leaf img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="tree-title">Aniversariantes do Mês</div>
+
+  <div class="verse">
+    “Este é o dia que o Senhor fez; regozijemo-nos e alegremo-nos nele.” — Salmos 118:24
+  </div>
+
+  <div class="month-filter">
+    <select id="mesSelecionado" class="form-select" onchange="filtrarMes()">
+      <option value="todos">Todos</option>
+      <option value="01">Janeiro</option>
+      <option value="02">Fevereiro</option>
+      <option value="03">Março</option>
+      <option value="04">Abril</option>
+      <option value="05">Maio</option>
+      <option value="06">Junho</option>
+      <option value="07">Julho</option>
+      <option value="08">Agosto</option>
+      <option value="09">Setembro</option>
+      <option value="10">Outubro</option>
+      <option value="11">Novembro</option>
+      <option value="12">Dezembro</option>
+    </select>
+  </div>
+
+  <div class="tree-container">
+    <div class="card-layer">
+
+  <div class="leaf" id="yasmin" data-mes="01">
+  <img src="imagens/maria.jpg">
+  <h5>Yasmin</h5>
+  <p>03/01</p>
+</div>
+
+<div class="leaf" id="edilson" data-mes="01">
+  <img src="imagens/joao.jpg">
+  <h5>José Edilson</h5>
+  <p>11/01</p>
+</div>
+
+<div class="leaf" id="gabriela" data-mes="01">
+  <img src="imagens/ana.jpg">
+  <h5>Gabriela</h5>
+  <p>23/01</p>
+</div>
+
+<div class="leaf" id="tania" data-mes="01">
+  <img src="imagens/carlos.jpg">
+  <h5>Tânia</h5>
+  <p>27/01</p>
+</div>
+
+<div class="leaf" id="zeneida" data-mes="02">
+  <img src="imagens/renata.jpg">
+  <h5>Zeneida</h5>
+  <p>08/02</p>
+</div>
+
+<div class="leaf" id="camila" data-mes="02">
+  <img src="imagens/pedro.jpg">
+  <h5>Camila</h5>
+  <p>27/02</p>
+</div>
+
+<div class="leaf" id="taniele" data-mes="02">
+  <img src="imagens/lucas.jpg">
+  <h5>Taniele</h5>
+  <p>22/02</p>
+</div>
+
+<div class="leaf" id="darlene" data-mes="03">
+  <img src="imagens/marcos.jpg">
+  <h5>Darlene</h5>
+  <p>09/03</p>
+</div>
+
+<div class="leaf" id="simone" data-mes="03">
+  <img src="imagens/paula.jpg">
+  <h5>Simone</h5>
+  <p>09/03</p>
+</div>
+
+<div class="leaf" id="fabiana" data-mes="03">
+  <img src="imagens/ricardo.jpg">
+  <h5>Fabiana</h5>
+  <p>22/03</p>
+</div>
+
+<div class="leaf" id="luiany" data-mes="03">
+  <img src="imagens/ricardo.jpg">
+  <h5>Luiany</h5>
+  <p>27/03</p>
+</div>
+
+<div class="leaf" id="eliene" data-mes="04">
+  <img src="imagens/ricardo.jpg">
+  <h5>Eliene</h5>
+  <p>01/04</p>
+</div>
+
+<div class="leaf" id="jessica" data-mes="04">
+  <img src="imagens/ricardo.jpg">
+  <h5>Jéssica</h5>
+  <p>09/04</p>
+</div>
+
+<div class="leaf" id="barbara" data-mes="04">
+  <img src="imagens/ricardo.jpg">
+  <h5>Bárbara</h5>
+  <p>13/04</p>
+</div>
+
+<div class="leaf" id="elizangela" data-mes="04">
+  <img src="imagens/ricardo.jpg">
+  <h5>Elizângela</h5>
+  <p>30/04</p>
+</div>  
+
+<div class="leaf" id="suely" data-mes="05">
+  <img src="imagens/ricardo.jpg">
+  <h5>Suely</h5>
+  <p>16/05</p>
+</div>
+
+<div class="leaf" id="jane" data-mes="05">
+  <img src="imagens/ricardo.jpg">
+  <h5>Jane</h5>
+  <p>24/05</p>
+</div>
+
+<div class="leaf" id="anna" data-mes="06">
+  <img src="imagens/ricardo.jpg">
+  <h5>Anna Cláudia</h5>
+  <p>12/06</p>
+</div>
+
+<div class="leaf" id="ester" data-mes="06">
+  <img src="imagens/aniversariantes/Este300r.jpeg">
+  <h5>Ester</h5>
+  <p>22/03</p>
+</div>
+
+<div class="leaf" id="celia" data-mes="06">
+  <img src="imagens/ricardo.jpg">
+  <h5>Célia Lima</h5>
+  <p>30/06</p>
+</div>
+
+<div class="leaf" id="michele" data-mes="07">
+  <img src="imagens/ricardo.jpg">
+  <h5>Michele</h5>
+  <p>08/07</p>
+</div>
+
+<div class="leaf" id="lucia" data-mes="07">
+  <img src="imagens/ricardo.jpg">
+  <h5>Lúcia Paulino</h5>
+  <p>05/07</p>
+</div>
+
+<div class="leaf" id="fatima" data-mes="07">
+  <img src="imagens/ricardo.jpg">
+  <h5>Fátima Teixeira</h5>
+  <p>06/07</p>
+</div>
+
+<div class="leaf" id="rejane" data-mes="07">
+  <img src="imagens/ricardo.jpg">
+  <h5>Rejane</h5>
+  <p>08/07</p>
+</div>
+
+<div class="leaf" id="elisabete" data-mes="07">
+  <img src="imagens/ricardo.jpg">
+  <h5>Elisabete</h5>
+  <p>18/07</p>
+</div>
+
+<div class="leaf" id="nubia" data-mes="08">
+  <img src="imagens/ricardo.jpg">
+  <h5>Núbia</h5>
+  <p>21/08</p>
+</div>
+
+<div class="leaf" id="tatyane" data-mes="08">
+  <img src="imagens/ricardo.jpg">
+  <h5>Tatyane</h5>
+  <p>21/08</p>
+</div>
+
+<div class="leaf" id="ruth" data-mes="08">
+  <img src="imagens/ricardo.jpg">
+  <h5>Ruth Safira</h5>
+  <p>22/08</p>
+</div>
+
+<div class="leaf" id="silvia" data-mes="08">
+  <img src="imagens/ricardo.jpg">
+  <h5>Sílvia Silveira</h5>
+  <p>31/08</p>
+</div>
+
+<div class="leaf" id="patricia" data-mes="09">
+  <img src="#">
+  <h5>Patrícia</h5>
+  <p>05/09</p>
+</div>
+
+<div class="leaf" id="aldeila" data-mes="09">
+  <img src="#">
+  <h5>Aldeila</h5>
+  <p>23/09</p>
+</div>
+
+<div class="leaf" id="rebeca" data-mes="10">
+  <img src="#">
+  <h5>Rebeca</h5>
+  <p>09/10</p>
+</div>
+
+<div class="leaf" id="betinha" data-mes="10">
+  <img src="imagens/ricardo.jpg">
+  <h5>Betinha</h5>
+  <p>12/10</p>
+</div>
+
+<div class="leaf" id="samaritana" data-mes="10">
+  <img src="imagens/ricardo.jpg">
+  <h5>Samaritana</h5>
+  <p>12/10</p>
+</div>
+
+<div class="leaf" id="christiane" data-mes="10">
+  <img src="imagens/aniversariantes/christiane300.jpeg">
+  <h5>Christiane</h5>
+  <p>21/10</p>
+</div>
+
+<div class="leaf" id="juliana" data-mes="11">
+  <img src="imagens/ricardo.jpg">
+  <h5>Juliana</h5>
+  <p>08/11</p>
+</div>
+
+<div class="leaf" id="duda" data-mes="11">
+  <img src="imagens/ricardo.jpg">
+  <h5>Duda</h5>
+  <p>20/11</p>
+</div>
+
+<div class="leaf" id="katia" data-mes="12">
+  <img src="imagens/ricardo.jpg">
+  <h5>Kátia</h5>
+  <p>04/12</p>
+</div>
+
+<div class="leaf" id="celia" data-mes="12">
+  <img src="imagens/ricardo.jpg">
+  <h5>Célia Farias</h5>
+  <p>16/12</p>
+</div>
+
+<div class="leaf" id="joao" data-mes="12">
+  <img src="imagens/aniversariantes/Joao.jpeg">
+  <h5>João</h5>
+  <p>19/12</p>
+</div>
+
+<div class="leaf" id="sergio" data-mes="12">
+  <img src="imagens/aniversariantes/sergio.jpg">
+  <h5>Sérgio</h5>
+  <p>22/12</p>
+</div>
+
+    </div> <!-- fim da card-layer -->
+  </div> <!-- fim da tree-container -->
+<a href="index.html#departamentos" class="btn btn-secondary mt-4">Voltar</a>
+</section>
+  <script>
+    function filtrarMes() {
+      const mesAtual = new Date().getMonth() + 1;
+      const mesSelecionado = document.getElementById("mesSelecionado").value;
+      const folhas = document.querySelectorAll(".leaf");
+
+      folhas.forEach(folha => {
+        const mesFolha = parseInt(folha.getAttribute("data-mes"));
+
+        if (mesSelecionado === "todos") {
+          folha.style.display = mesFolha <= mesAtual ? "block" : "none";
+        } else {
+          folha.style.display = mesFolha === parseInt(mesSelecionado) ? "block" : "none";
+        }
+      });
+    }
+
+    window.onload = filtrarMes;
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
