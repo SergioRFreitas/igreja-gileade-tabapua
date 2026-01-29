@@ -236,12 +236,12 @@
 }
 
 .carousel-avisos .carousel-inner {
-  height: 420px; /* altura fixa do carousel */
+  height: auto; /* altura fixa do carousel */
 }
 
 .carousel-avisos .carousel-inner img {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: contain; /* mantém proporção sem cortar */
   background-color: #000; /* fundo discreto atrás da imagem */
   border-radius: 10px;
