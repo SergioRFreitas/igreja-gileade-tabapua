@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <title>Aviso do Mês</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+    <style>
+        header {
+        background: url("imagens/avisos350.jpg") right
+          center/cover no-repeat;
+        height: 60vh;
+        color: white;
+      }
+      header .overlay {
+        background: rgba(0, 0, 0, 0.6);
+        height: 100%;
+      }
+      .section-title {
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      /* Ajuste opcional para o carousel */
+      .carousel-inner img {
+        max-height: 500px;
+        object-fit: cover;
+      }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img src="imagens/logo1-limpa-y.png"
+            alt="Logo Igreja Gileade Tabapuá"
+            width="60"
+            height="60"
+            class="me-2 rounded-circle"/>
+          <span>Igreja Cristã Gileade Tabapuá</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html#sobre">Sobre</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#departamentos">Departamentos</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#agenda">Agenda</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#contato">Contato</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HEADER -->
+<header>
+  <div class="overlay d-flex align-items-center justify-content-center flex-column">
+    <h1 class="display-5">Avisos do Mês</h1>
+
+    <div style="margin-top: 0.5rem; display: inline-block; text-align: left;">
+      <div style="font-size: 1rem; font-weight: 300;">
+        “Eu vos darei pastores segundo o meu coração, que vos apascentem com conhecimento e com entendimento.”
+      </div>
+      <div style="font-size: 0.9rem; font-style: italic; text-align: right;">
+        Jeremias(Jr) 3:15
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTEÚDO -->
+<section class="container py-5">
+
+  <!-- ⭐ CAROUSEL INSERIDO AQUI ⭐ -->
+  <div id="carouselAvisos" class="carousel slide carousel-avisos" data-bs-ride="carousel" data-bs-interval="5000">
+
+  <!-- Indicadores -->
+  <div class="carousel-indicators indicadores-sutis">
+    <button type="button" data-bs-target="#carouselAvisos" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#carouselAvisos" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#carouselAvisos" data-bs-slide-to="2"></button>
+    <button type="button" data-bs-target="#carouselAvisos" data-bs-slide-to="3"></button>
+    
+  </div>
+
+  <div class="carousel-inner rounded shadow">
+
+    <div class="carousel-item active" data-descricao="Conferência Koinonia 2026 — 31/01 e 01/02">
+      <img src="imagens/banners/conferencia_koinonia.jpeg" class="d-block w-100" alt="Conferência Koinonia 2026">
+    </div>
+
+    <div class="carousel-item" data-descricao="Preletor do dia 31 de janeiro de 2026, sábado.">
+      <img src="imagens/banners/conferencia_koinonia_preletor.jpeg" class="d-block w-100" alt="Evento 2">
+    </div>
+
+    <div class="carousel-item" data-descricao="Preletor do dia 1 de fevereiro de 2026, 1°Domingo.">
+      <img src="imagens/banners/conferencia_koinonia_preletor1.jpeg" class="d-block w-100" alt="Evento 3">
+    </div>
+
+    <div class="carousel-item" data-descricao="Culto de oração — Quartas-feiras">
+      <img src="imagens/banners/cultodeoracao.jpeg" class="d-block w-100" alt="Evento 3">
+    </div>
+
+  </div> <!-- FECHAMENTO CORRETO DA carousel-inner -->
+
+  <!-- Legenda do banner -->
+  <div class="carousel-legenda text-center">
+    Conferência Koinonia 2026 — 31/01 e 01/02
+  </div>
+
+  <!-- Controles -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselAvisos" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselAvisos" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+
+</div> <!-- FECHA O CAROUSEL COMPLETO -->
+  <!-- ⭐ FIM DO CAROUSEL ⭐ -->
+
+ 
+
+ 
+
+  <a href="index.html#departamentos" class="btn btn-secondary mt-4">Voltar</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="text-center py-3 bg-secondary text-white">
+    &copy; 2026 Igreja Cristã Gileade Tabapuá – Todos os direitos reservados
+</footer>
+
+<script>
+  const carousel = document.getElementById('carouselAvisos');
+  const legenda = document.querySelector('.carousel-legenda');
+
+  carousel.addEventListener('slide.bs.carousel', function (event) {
+    const descricao = event.relatedTarget.getAttribute('data-descricao');
+    legenda.textContent = descricao;
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

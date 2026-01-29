@@ -218,3 +218,52 @@
     text-align: center;
   }
 }
+
+.aviso-banner {
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  max-width: 900px;
+}
+
+/* ========================================================= */
+/*   9. CAROUSEL DE BANNERS                                  */
+/* ========================================================= */
+
+.carousel-avisos {
+  width: 100%;
+  max-width: 900px; /* largura padrão dos seus banners */
+  margin: 0 auto 40px; /* centraliza e dá espaçamento */
+}
+
+.carousel-avisos .carousel-inner {
+  height: 420px; /* altura fixa do carousel */
+}
+
+.carousel-avisos .carousel-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* mantém proporção sem cortar */
+  background-color: #000; /* fundo discreto atrás da imagem */
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* Indicadores discretos */
+.indicadores-sutis button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.5);
+}
+
+.indicadores-sutis .active {
+  background-color: #fff;
+}
+
+/* Legenda suave */
+.carousel-legenda {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: #444;
+  opacity: 0.9;
+}
