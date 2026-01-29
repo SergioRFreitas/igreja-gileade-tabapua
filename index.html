@@ -6,7 +6,7 @@
   <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
   <title>Inicial</title>
 
-  <link rel="canonical" href="https://igrejaagileedetabapua.com.br/" />
+  <link rel="canonical" href="https://igrejagileedetabapua.com.br/" />
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
@@ -30,6 +30,9 @@
 </head>
 
   <body>
+
+  <div id="dataHora" style="font-size: 12px; color: #000000; text-align: right; padding: 5px 15px;">
+  </div> 
     
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -573,6 +576,44 @@
         </div>
       </div>
     </div>
+
+    <script>
+  function numeroDaSemana(data) {
+    const primeira = new Date(data.getFullYear(), 0, 1);
+    const diff = data - primeira;
+    const umDia = 1000 * 60 * 60 * 24;
+    return Math.ceil((diff / umDia + primeira.getDay() + 1) / 7);
+  }
+
+  function totalSemanasAno(ano) {
+    const ultimoDia = new Date(ano, 11, 31);
+    return numeroDaSemana(ultimoDia);
+  }
+
+  function atualizarDataHora() {
+    const agora = new Date();
+
+    const opcoes = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    };
+
+    const formato = agora.toLocaleString('pt-BR', opcoes);
+    const semanaAtual = numeroDaSemana(agora);
+    const semanasAno = totalSemanasAno(agora.getFullYear());
+
+    document.getElementById('dataHora').textContent =
+      `${formato} — Semana ${semanaAtual} de ${semanasAno} semanas`;
+  }
+
+  atualizarDataHora();
+  setInterval(atualizarDataHora, 1000);
+</script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
