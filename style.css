@@ -267,3 +267,12 @@
   color: #444;
   opacity: 0.9;
 }
+
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+td:nth-child(4) {
+    white-space: normal;
+}
