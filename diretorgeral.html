@@ -241,6 +241,18 @@
             <span class="badge-ciclo" id="vb-ciclo"></span>
         </div>
     </div>
+
+    <!-- ── LÍNGUAS ORIGINAIS ── -->
+    <h3 class="mt-5 mb-1">
+        <span class="section-icon">📜</span> Texto nas Línguas Bíblicas Originais
+    </h3>
+    <p class="text-muted mb-3" style="font-size:0.9rem;">
+        O versículo acima no idioma original das Escrituras — hebraico (Antigo Testamento)
+        ou grego (Novo Testamento) — com transliteração fonética e tradução literal em português.
+    </p>
+    <div class="original-card" id="original-card">
+        <!-- Preenchido pelo JS -->
+    </div>
 </section>
 
 <!-- ════════════════════════════════════════
@@ -296,7 +308,7 @@
             <!--▲▲▲ FIM DA EDIÇÃO SEMANAL ▲▲▲-->
 
             <div class="assinatura">
-                — Pr. Wellington Gomes, Direção Geral
+                — Pb. Wellington Gomes, Direção Geral
             </div>
         </div>
     </div>
@@ -369,26 +381,6 @@
     <a href="index.html#departamentos" class="btn btn-secondary mt-4">Voltar</a>
 </section>
 
-<!-- ════════════════════════════════════════
-     SEÇÃO 4 – TEXTO NAS LÍNGUAS ORIGINAIS
-════════════════════════════════════════ -->
-<section class="bg-light py-5">
-    <div class="container">
-        <h2 class="section-title">
-            <span class="section-icon">📜</span> Texto nas Línguas Bíblicas Originais
-        </h2>
-        <p class="text-muted mb-4" style="font-size:0.9rem;">
-            O texto abaixo corresponde ao versículo da <strong>Palavra do Dia</strong>, exibido no idioma original
-            das Escrituras (hebraico para o Antigo Testamento, grego para o Novo Testamento),
-            com transliteração fonética e tradução em português.
-        </p>
-
-        <div class="original-card" id="original-card">
-            <!-- Preenchido pelo JS -->
-        </div>
-    </div>
-</section>
-
 <!-- FOOTER -->
 <footer class="text-center py-3 bg-secondary text-white">
     &copy; 2026 Igreja Cristã Gileade Tabapuá – Todos os direitos reservados
@@ -400,17 +392,59 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-/* ============================================================
-   BANCO DE VERSÍCULOS
-   Cada entrada tem:
-     texto     – versão pt-BR (ARA/NVI)
-     ref       – referência em pt
-     testamento– "AT" (Antigo) ou "NT" (Novo)
-     livro_heb – sigla do livro hebraico (AT) ou grego (NT)
-     original  – texto no idioma original
-     translit  – transliteração fonética
-     trad_pt   – tradução literal/expandida
-   ============================================================ */
+/* ╔══════════════════════════════════════════════════════════════════╗
+   ║              GUIA DE ATUALIZAÇÃO DOS VERSÍCULOS                ║
+   ╠══════════════════════════════════════════════════════════════════╣
+   ║                                                                  ║
+   ║  Quando quiser trocar ou adicionar versículos, edite a lista    ║
+   ║  VERSICULOS abaixo. Cada versículo tem 6 campos obrigatórios:  ║
+   ║                                                                  ║
+   ║  texto      → versão em português (ARA, NVI, ACF etc.)         ║
+   ║               Ex: "O Senhor é o meu pastor; nada me faltará."  ║
+   ║                                                                  ║
+   ║  ref        → referência do versículo                           ║
+   ║               Ex: "Salmos 23:1"                                 ║
+   ║                                                                  ║
+   ║  testamento → use "AT" para Antigo Testamento (hebraico)       ║
+   ║               use "NT" para Novo Testamento (grego)            ║
+   ║                                                                  ║
+   ║  original   → texto no idioma original das Escrituras          ║
+   ║               AT = hebraico (da direita para esquerda)         ║
+   ║               NT = grego koinê                                  ║
+   ║               Fontes: www.stepbible.org ou www.biblehub.com    ║
+   ║                                                                  ║
+   ║  translit   → como o texto original se lê foneticamente        ║
+   ║               em letras latinas (português)                     ║
+   ║               Ex hebraico: "Yahweh rō'î, lō' eḥsār."          ║
+   ║               Ex grego:    "Panta ischyō en tō endunamounti."  ║
+   ║               Fonte: www.biblehub.com (aba "Interlinear")      ║
+   ║                                                                  ║
+   ║  trad_pt    → tradução literal, palavra por palavra,           ║
+   ║               diferente da versão em português acima.          ║
+   ║               Serve para mostrar o sentido original do texto.  ║
+   ║               Ex: "O SENHOR é meu pastor, não me faltará nada."║
+   ║                                                                  ║
+   ╠══════════════════════════════════════════════════════════════════╣
+   ║  MODELO PRONTO PARA COPIAR E PREENCHER:                        ║
+   ║                                                                  ║
+   ║  {                                                               ║
+   ║    texto:     "Texto em português aqui.",                       ║
+   ║    ref:       "Livro capítulo:versículo",                       ║
+   ║    testamento: "AT",   ← troque por "NT" se for Novo Test.     ║
+   ║    original:  "Texto em hebraico ou grego aqui.",              ║
+   ║    translit:  "Transliteração fonética aqui.",                  ║
+   ║    trad_pt:   "Tradução literal aqui."                          ║
+   ║  },                                                              ║
+   ║                                                                  ║
+   ║  ATENÇÃO: Não esqueça a vírgula ( , ) após o } de cada entrada ║
+   ║  exceto no último versículo da lista.                           ║
+   ║                                                                  ║
+   ║  SITES ÚTEIS PARA BUSCAR O TEXTO ORIGINAL E TRANSLITERAÇÃO:    ║
+   ║    → https://www.stepbible.org                                  ║
+   ║    → https://biblehub.com/interlinear                          ║
+   ║    → https://www.academic-bible.com                            ║
+   ║                                                                  ║
+   ╚══════════════════════════════════════════════════════════════════╝ */
 const VERSICULOS = [
   {
     texto: "O Senhor é o meu pastor; nada me faltará.",
