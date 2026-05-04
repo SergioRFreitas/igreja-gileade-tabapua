@@ -4,27 +4,175 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
-    <title>Geral</title>
+    <title>Direção Pastoral – Igreja Cristã Gileade Tabapuá</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
 
-    
-<link rel="stylesheet" href="style.css" />
     <style>
+        /* ── HEADER ── */
         header {
-        background: url("imagens/pastor.jpg") right
-          center/cover no-repeat;
-        height: 60vh;
-        color: white;
-      }
-      header .overlay {
-        background: rgba(0, 0, 0, 0.6);
-        height: 100%;
-      }
-      .section-title {
-        font-weight: bold;
-        margin-bottom: 20px;
-      }
+            background: url("imagens/pastor.jpg") right center/cover no-repeat;
+            height: 60vh;
+            color: white;
+        }
+        header .overlay {
+            background: rgba(0, 0, 0, 0.6);
+            height: 100%;
+        }
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* ── VERSÍCULO DO CABEÇALHO ── */
+        #versiculo-header {
+            transition: opacity 0.8s ease;
+        }
+        #versiculo-header.fade-out {
+            opacity: 0;
+        }
+
+        /* ── CARD DO VERSÍCULO ── */
+        .versiculo-destaque {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            border-left: 5px solid #e2b96f;
+            border-radius: 8px;
+            padding: 2rem 2.5rem;
+            color: #f5f0e8;
+            position: relative;
+            overflow: hidden;
+        }
+        .versiculo-destaque::before {
+            content: "\201C";
+            font-size: 8rem;
+            color: rgba(226, 185, 111, 0.12);
+            position: absolute;
+            top: -1.5rem;
+            left: 0.5rem;
+            line-height: 1;
+            font-family: Georgia, serif;
+        }
+        .versiculo-destaque .texto-versiculo {
+            font-size: 1.15rem;
+            font-style: italic;
+            line-height: 1.8;
+            color: #f5f0e8;
+        }
+        .versiculo-destaque .referencia-versiculo {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #e2b96f;
+            text-align: right;
+            margin-top: 0.75rem;
+        }
+        .badge-ciclo {
+            font-size: 0.75rem;
+            background: rgba(226, 185, 111, 0.2);
+            color: #e2b96f;
+            border: 1px solid rgba(226, 185, 111, 0.35);
+            border-radius: 20px;
+            padding: 0.2rem 0.75rem;
+        }
+
+        /* ── MENSAGEM PASTORAL ── */
+        .mensagem-pastoral-card {
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-top: 4px solid #5a7a5a;
+            border-radius: 8px;
+            padding: 2rem 2.5rem;
+        }
+        .mensagem-pastoral-card .data-mensagem {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+        .mensagem-pastoral-card .titulo-mensagem {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        .mensagem-pastoral-card .corpo-mensagem {
+            font-size: 1rem;
+            color: #444;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        .mensagem-pastoral-card .assinatura {
+            margin-top: 1.5rem;
+            font-style: italic;
+            color: #5a7a5a;
+            font-size: 0.95rem;
+            text-align: right;
+        }
+
+        /* ── LÍNGUAS ORIGINAIS ── */
+        .original-card {
+            background: #fafaf7;
+            border: 1px solid #e0d9c8;
+            border-radius: 8px;
+            padding: 2rem;
+        }
+        .original-idioma-titulo {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #888;
+            margin-bottom: 0.4rem;
+        }
+        .original-texto {
+            font-size: 1.35rem;
+            line-height: 1.9;
+            color: #1a1a1a;
+        }
+        .original-texto.heb {
+            direction: rtl;
+            font-family: "SBL Hebrew", "Ezra SIL", "David", serif;
+            font-size: 1.5rem;
+        }
+        .original-texto.grc {
+            font-family: "SBL Greek", "Palatino Linotype", serif;
+            font-size: 1.35rem;
+        }
+        .transliteracao {
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-style: italic;
+            margin-top: 0.3rem;
+            line-height: 1.7;
+        }
+        .traducao-pt {
+            font-size: 1rem;
+            color: #333;
+            font-style: italic;
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px dashed #ccc;
+        }
+        .referencia-original {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #8b6914;
+            margin-top: 0.75rem;
+        }
+        .separador-original {
+            border: none;
+            border-top: 1px solid #e0d9c8;
+            margin: 1.5rem 0;
+        }
+        .section-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        /* ── CONTADOR REGRESSIVO ── */
+        #proximo-versiculo {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
     </style>
 </head>
 
@@ -34,17 +182,15 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="index.html">
-          <img src="imagens/logo1-limpa-y.png"
-            alt="Logo Igreja Gileade Tabapuá"
-            width="60"
-            height="60"
-            class="me-2 rounded-circle"/>
-          <span>Igreja Cristã Gileade Tabapuá</span>
+            <img src="imagens/logo1-limpa-y.png"
+                 alt="Logo Igreja Gileade Tabapuá"
+                 width="60" height="60"
+                 class="me-2 rounded-circle"/>
+            <span>Igreja Cristã Gileade Tabapuá</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="menu">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="index.html#sobre">Sobre</a></li>
@@ -58,92 +204,189 @@
 
 <!-- HEADER -->
 <header>
-  <div class="overlay d-flex align-items-center justify-content-center flex-column">
-    <h1 class="display-5">Pastor Wellington Gomes/ Direção Geral</h1>
+    <div class="overlay d-flex align-items-center justify-content-center flex-column px-3">
+        <h1 class="display-5 text-center mb-3">Pastor Wellington Gomes / Direção Geral</h1>
 
-    <div style="margin-top: 0.5rem; display: inline-block; text-align: left;">
-      <div style="font-size: 1rem; font-weight: 300;">
-        “Eu vos darei pastores segundo o meu coração, que vos apascentem com conhecimento e com entendimento.”
-      </div>
-      <div style="font-size: 0.9rem; font-style: italic; text-align: right;">
-        Jeremias(Jr) 3:15
-      </div>
+        <!-- Versículo rotativo no cabeçalho -->
+        <div id="versiculo-header"
+             style="max-width: 680px; text-align: center; background: rgba(0,0,0,0.4);
+                    border-radius: 8px; padding: 1rem 1.5rem; border: 1px solid rgba(226,185,111,0.4);">
+            <div id="vh-texto"
+                 style="font-size: 1.05rem; font-style: italic; line-height: 1.7; color: #f5f0e8;">
+            </div>
+            <div id="vh-ref"
+                 style="font-size: 0.9rem; font-weight: 600; color: #e2b96f; margin-top: 0.4rem;">
+            </div>
+            <div id="vh-contador" style="font-size: 0.75rem; color: #bbb; margin-top: 0.4rem;"></div>
+        </div>
     </div>
-  </div>
 </header>
 
-<!-- CONTEÚDO -->
+<!-- ════════════════════════════════════════
+     SEÇÃO 1 – VERSÍCULO DESTACADO
+════════════════════════════════════════ -->
 <section class="container py-5">
-  <h2>Sobre o Departamento</h2>
+    <h2 class="section-title">
+        <span class="section-icon">✦</span> Palavra do Dia
+    </h2>
+    <p class="text-muted mb-3" style="font-size:0.9rem;">
+        O versículo é renovado automaticamente a cada 6 horas.
+        <span id="proximo-versiculo"></span>
+    </p>
 
-  <p style="text-align: justify;">
-    A Direção Geral e o Ministério Pastoral têm como propósito conduzir a igreja segundo a vontade de Deus,
-    oferecendo cuidado espiritual, liderança sábia e orientação bíblica para toda a congregação. O pastor é chamado
-    para apascentar o rebanho, ensinar a Palavra, interceder pelos membros e guiar a igreja com amor, firmeza e
-    responsabilidade diante do Senhor.
-  </p>
+    <div class="versiculo-destaque" id="versiculo-body">
+        <div class="texto-versiculo" id="vb-texto"></div>
+        <div class="referencia-versiculo" id="vb-ref"></div>
+        <div class="mt-2">
+            <span class="badge-ciclo" id="vb-ciclo"></span>
+        </div>
+    </div>
+</section>
 
-  <p style="text-align: justify;">
-    <strong>Missão:</strong> Pastorear a igreja com dedicação, zelo e fidelidade, ensinando a Palavra de Deus,
-    promovendo unidade, fortalecendo a fé dos irmãos e conduzindo a congregação ao cumprimento do propósito divino.
-  </p>
+<!-- ════════════════════════════════════════
+     SEÇÃO 2 – MENSAGEM PASTORAL SEMANAL
+════════════════════════════════════════ -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="section-title">
+            <span class="section-icon">📖</span> Mensagem Pastoral da Semana
+        </h2>
 
-  <p style="text-align: justify;">
-    <strong>Visão:</strong> Ser uma liderança que inspira, edifica e direciona a igreja a viver uma fé madura,
-    comprometida com o Reino de Deus, fundamentada na verdade bíblica e guiada pelo Espírito Santo.
-  </p>
+        <!--
+        ╔══════════════════════════════════════════════════════════════╗
+        ║  EDIÇÃO MANUAL — atualize esta seção toda semana            ║
+        ║  Troque: data-semana, titulo-mensagem e corpo-mensagem      ║
+        ╚══════════════════════════════════════════════════════════════╝
+        -->
+        <div class="mensagem-pastoral-card">
+            <div class="data-mensagem" id="data-mensagem-pastoral">
+                <!-- Gerado automaticamente pelo JS com base no data-semana abaixo -->
+            </div>
 
-  <p style="text-align: justify;">
-    <strong>Propósito:</strong> Cuidar das vidas, promover crescimento espiritual, orientar decisões, fortalecer
-    famílias, discipular novos convertidos e manter a igreja alinhada com os princípios do Evangelho.
-  </p>
+            <!--▼▼▼ EDITE AQUI TODA SEMANA ▼▼▼-->
+            <div class="titulo-mensagem"
+                 data-semana="2026-W19"
+                 id="titulo-mensagem">
+                Firmes na Fé em Tempos de Provação
+            </div>
 
-  <p style="text-align: justify;">
-    <strong>História:</strong> A liderança pastoral desta igreja foi estabelecida com o compromisso de servir ao Senhor
-    e à comunidade com integridade e amor. Ao longo dos anos, o pastor e a direção geral têm trabalhado para edificar
-    uma igreja sólida, acolhedora e comprometida com a Palavra, sempre buscando a direção de Deus para cada decisão.
-  </p>
+            <div class="corpo-mensagem" id="corpo-mensagem">
+                <p>
+                    Amados irmãos e irmãs em Cristo,
+                </p>
+                <p>
+                    Esta semana somos convidados a refletir sobre a firmeza da fé diante das tribulações.
+                    O apóstolo Paulo nos lembra em Romanos 5:3-4 que as tribulações produzem perseverança,
+                    e a perseverança, caráter provado, e o caráter provado, esperança.
+                </p>
+                <p>
+                    Muitas vezes, quando as dificuldades chegam, somos tentados a questionar o amor e o cuidado
+                    de Deus. Mas é justamente nesses momentos que a nossa fé é refinada, como o ouro no fogo.
+                    Deus não promete ausência de tempestades, mas Sua presença dentro delas.
+                </p>
+                <p>
+                    Que nesta semana possamos olhar para as nossas circunstâncias não com os olhos do temor,
+                    mas com os olhos da fé — crendo que Aquele que começou a boa obra em nós há de completá-la
+                    (Filipenses 1:6).
+                </p>
+                <p>
+                    Que Deus abençoe cada lar, cada família e cada coração da nossa congregação.
+                </p>
+            </div>
+            <!--▲▲▲ FIM DA EDIÇÃO SEMANAL ▲▲▲-->
 
-  <p style="text-align: justify;">
-    <strong>Objetivos:</strong> Ensinar a Palavra com fidelidade; promover discipulado; acompanhar famílias; orientar
-    espiritualmente os membros; liderar projetos e ministérios; e manter a igreja organizada e alinhada com sua visão
-    e missão.
-  </p>
+            <div class="assinatura">
+                — Pb. Wellington Gomes, Direção Geral
+            </div>
+        </div>
+    </div>
+</section>
 
-  <p style="text-align: justify;">
-    <strong>O que representa na igreja:</strong> A Direção Geral e o Ministério Pastoral representam o cuidado de Deus
-    sobre a igreja. São responsáveis por guiar, proteger, ensinar e fortalecer o rebanho, sendo referência espiritual,
-    moral e organizacional para toda a congregação.
-  </p>
+<!-- ════════════════════════════════════════
+     SEÇÃO 3 – CONTEÚDO ORIGINAL DA PÁGINA
+════════════════════════════════════════ -->
+<section class="container py-5">
+    <h2>Sobre o Departamento</h2>
 
-  <h3 class="mt-4">Atividades</h3>
-  <ul>
-    <li>
-      <strong>Pregação e ensino da Palavra</strong><br>
-      <em>“Prega a palavra, insta a tempo e fora de tempo.” — 2 Timóteo(2Tm) 4:2</em>
-    </li>
+    <p style="text-align: justify;">
+        A Direção Geral e o Ministério Pastoral têm como propósito conduzir a igreja segundo a vontade de Deus,
+        oferecendo cuidado espiritual, liderança sábia e orientação bíblica para toda a congregação. O pastor é chamado
+        para apascentar o rebanho, ensinar a Palavra, interceder pelos membros e guiar a igreja com amor, firmeza e
+        responsabilidade diante do Senhor.
+    </p>
+    <p style="text-align: justify;">
+        <strong>Missão:</strong> Pastorear a igreja com dedicação, zelo e fidelidade, ensinando a Palavra de Deus,
+        promovendo unidade, fortalecendo a fé dos irmãos e conduzindo a congregação ao cumprimento do propósito divino.
+    </p>
+    <p style="text-align: justify;">
+        <strong>Visão:</strong> Ser uma liderança que inspira, edifica e direciona a igreja a viver uma fé madura,
+        comprometida com o Reino de Deus, fundamentada na verdade bíblica e guiada pelo Espírito Santo.
+    </p>
+    <p style="text-align: justify;">
+        <strong>Propósito:</strong> Cuidar das vidas, promover crescimento espiritual, orientar decisões, fortalecer
+        famílias, discipular novos convertidos e manter a igreja alinhada com os princípios do Evangelho.
+    </p>
+    <p style="text-align: justify;">
+        <strong>História:</strong> A liderança pastoral desta igreja foi estabelecida com o compromisso de servir ao Senhor
+        e à comunidade com integridade e amor. Ao longo dos anos, o pastor e a direção geral têm trabalhado para edificar
+        uma igreja sólida, acolhedora e comprometida com a Palavra, sempre buscando a direção de Deus para cada decisão.
+    </p>
+    <p style="text-align: justify;">
+        <strong>Objetivos:</strong> Ensinar a Palavra com fidelidade; promover discipulado; acompanhar famílias; orientar
+        espiritualmente os membros; liderar projetos e ministérios; e manter a igreja organizada e alinhada com sua visão
+        e missão.
+    </p>
+    <p style="text-align: justify;">
+        <strong>O que representa na igreja:</strong> A Direção Geral e o Ministério Pastoral representam o cuidado de Deus
+        sobre a igreja. São responsáveis por guiar, proteger, ensinar e fortalecer o rebanho, sendo referência espiritual,
+        moral e organizacional para toda a congregação.
+    </p>
 
-    <li class="mt-3">
-      <strong>Aconselhamento pastoral</strong><br>
-      <em>“Na multidão de conselheiros há segurança.” — Provérbios(Pv) 11:14</em>
-    </li>
+    <h3 class="mt-4">Atividades</h3>
+    <ul>
+        <li>
+            <strong>Pregação e ensino da Palavra</strong><br>
+            <em>"Prega a palavra, insta a tempo e fora de tempo." — 2 Timóteo(2Tm) 4:2</em>
+        </li>
+        <li class="mt-3">
+            <strong>Aconselhamento pastoral</strong><br>
+            <em>"Na multidão de conselheiros há segurança." — Provérbios(Pv) 11:14</em>
+        </li>
+        <li class="mt-3">
+            <strong>Visitas e acompanhamento espiritual</strong><br>
+            <em>"Consolai-vos uns aos outros e edificai-vos uns aos outros." — 1 Tessalonicenses(1Ts) 5:11</em>
+        </li>
+        <li class="mt-3">
+            <strong>Direção de cultos e decisões administrativas</strong><br>
+            <em>"O prudente vê o perigo e esconde-se." — Provérbios(Pv) 22:3</em>
+        </li>
+    </ul>
 
-    <li class="mt-3">
-      <strong>Visitas e acompanhamento espiritual</strong><br>
-      <em>“Consolai-vos uns aos outros e edificai-vos uns aos outros.” — 1 Tessalonicenses(1Ts) 5:11</em>
-    </li>
+    <h3 class="mt-4">Equipe</h3>
+    <p>Pastor Presidente: Wellinton Gomes</p>
+    <p>Direção Geral: Wellington Gomes</p>
 
-    <li class="mt-3">
-      <strong>Direção de cultos e decisões administrativas</strong><br>
-      <em>“O prudente vê o perigo e esconde-se.” — Provérbios(Pv) 22:3</em>
-    </li>
-  </ul>
+    <a href="index.html#departamentos" class="btn btn-secondary mt-4">Voltar</a>
+</section>
 
-  <h3 class="mt-4">Equipe</h3>
-  <p>Pastor Presidente: Wellinton Gomes</p>
-  <p>Direção Geral: Wellington Gomes</p>
+<!-- ════════════════════════════════════════
+     SEÇÃO 4 – TEXTO NAS LÍNGUAS ORIGINAIS
+════════════════════════════════════════ -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="section-title">
+            <span class="section-icon">📜</span> Texto nas Línguas Bíblicas Originais
+        </h2>
+        <p class="text-muted mb-4" style="font-size:0.9rem;">
+            O texto abaixo corresponde ao versículo da <strong>Palavra do Dia</strong>, exibido no idioma original
+            das Escrituras (hebraico para o Antigo Testamento, grego para o Novo Testamento),
+            com transliteração fonética e tradução em português.
+        </p>
 
-  <a href="index.html#departamentos" class="btn btn-secondary mt-4">Voltar</a>
+        <div class="original-card" id="original-card">
+            <!-- Preenchido pelo JS -->
+        </div>
+    </div>
 </section>
 
 <!-- FOOTER -->
@@ -151,6 +394,258 @@
     &copy; 2026 Igreja Cristã Gileade Tabapuá – Todos os direitos reservados
 </footer>
 
+<!-- ════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════ -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* ============================================================
+   BANCO DE VERSÍCULOS
+   Cada entrada tem:
+     texto     – versão pt-BR (ARA/NVI)
+     ref       – referência em pt
+     testamento– "AT" (Antigo) ou "NT" (Novo)
+     livro_heb – sigla do livro hebraico (AT) ou grego (NT)
+     original  – texto no idioma original
+     translit  – transliteração fonética
+     trad_pt   – tradução literal/expandida
+   ============================================================ */
+const VERSICULOS = [
+  {
+    texto: "O Senhor é o meu pastor; nada me faltará.",
+    ref:   "Salmos 23:1",
+    testamento: "AT",
+    original:  "יְהוָה רֹעִי לֹא אֶחְסָר׃",
+    translit:  "Yahweh rō'î, lō' eḥsār.",
+    trad_pt:   "O SENHOR é meu pastor, não me faltará nada."
+  },
+  {
+    texto: "Porque Deus amou ao mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.",
+    ref:   "João 3:16",
+    testamento: "NT",
+    original:  "Οὕτως γὰρ ἠγάπησεν ὁ θεὸς τὸν κόσμον, ὥστε τὸν υἱὸν τὸν μονογενῆ ἔδωκεν, ἵνα πᾶς ὁ πιστεύων εἰς αὐτὸν μὴ ἀπόληται ἀλλ' ἔχῃ ζωὴν αἰώνιον.",
+    translit:  "Houtōs gar ēgapēsen ho theos ton kosmon, hōste ton huion ton monogenē edōken, hina pas ho pisteuōn eis auton mē apolētai all' echē zōēn aiōnion.",
+    trad_pt:   "Pois assim amou Deus o mundo, de tal forma que seu Filho, o unigênito, entregou, para que todo o que crê nele não pereça, mas tenha vida eterna."
+  },
+  {
+    texto: "Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento.",
+    ref:   "Provérbios 3:5",
+    testamento: "AT",
+    original:  "בְּטַח אֶל-יְהוָה בְּכָל-לִבֶּךָ וְאֶל-בִּינָתְךָ אַל-תִּשָּׁעֵן׃",
+    translit:  "Beṭaḥ el-Yahweh beḵol-libbeka, we'el-bînaṯkā al-tiššā'ēn.",
+    trad_pt:   "Confia no SENHOR com todo o teu coração, e sobre teu próprio entendimento não te apoies."
+  },
+  {
+    texto: "Posso tudo naquele que me fortalece.",
+    ref:   "Filipenses 4:13",
+    testamento: "NT",
+    original:  "πάντα ἰσχύω ἐν τῷ ἐνδυναμοῦντί με.",
+    translit:  "Panta ischyō en tō endunamounti me.",
+    trad_pt:   "Tudo posso por meio daquele que me fortalece."
+  },
+  {
+    texto: "Porque eu bem sei os planos que tenho a vosso respeito, diz o Senhor; planos de paz e não de mal, para vos dar um futuro e uma esperança.",
+    ref:   "Jeremias 29:11",
+    testamento: "AT",
+    original:  "כִּי אָנֹכִי יָדַעְתִּי אֶת-הַמַּחֲשָׁבֹת אֲשֶׁר אָנֹכִי חֹשֵׁב עֲלֵיכֶם נְאֻם-יְהוָה מַחֲשְׁבֹות שָׁלֹום וְלֹא לְרָעָה לָתֵת לָכֶם אַחֲרִית וְתִקְוָה׃",
+    translit:  "Kî 'anōḵî yāda'tî 'et-hammaḥăšābōṯ 'ăšer 'anōḵî ḥōšēb 'ălêḵem ne'um-Yahweh, maḥăšebōṯ šālōm welō' lerā'āh, lāṯēṯ lāḵem 'aḥărîṯ weṯiqwāh.",
+    trad_pt:   "Pois eu conheço os planos que tenho para vós — declaração do SENHOR — planos de prosperidade e não de calamidade, para dar-vos um futuro e uma esperança."
+  },
+  {
+    texto: "Tudo posso naquele que me fortalece.",
+    ref:   "Filipenses 4:13",
+    testamento: "NT",
+    original:  "πάντα ἰσχύω ἐν τῷ ἐνδυναμοῦντί με.",
+    translit:  "Panta ischyō en tō endunamounti me.",
+    trad_pt:   "Tudo posso mediante aquele que me infunde força."
+  },
+  {
+    texto: "Porque pela graça sois salvos, mediante a fé; e isto não vem de vós; é dom de Deus.",
+    ref:   "Efésios 2:8",
+    testamento: "NT",
+    original:  "τῇ γὰρ χάριτί ἐστε σεσῳσμένοι διὰ πίστεως· καὶ τοῦτο οὐκ ἐξ ὑμῶν, θεοῦ τὸ δῶρον·",
+    translit:  "Tē gar chariti este sesōsmenoi dia pisteōs· kai touto ouk ex hymōn, theou to dōron·",
+    trad_pt:   "Pois pela graça estais salvos por meio da fé; e isso não provém de vós, é dom de Deus."
+  },
+  {
+    texto: "Sede fortes e corajosos. Não temais, nem vos assusteis com eles, porque o Senhor, o teu Deus, é o que vai contigo; não te deixará nem te desamparará.",
+    ref:   "Deuteronômio 31:6",
+    testamento: "AT",
+    original:  "חִזְקוּ וְאִמְצוּ אַל-תִּירְאוּ וְאַל-תַּעַרְצוּ מִפְּנֵיהֶם כִּי יְהוָה אֱלֹהֶיךָ הוּא הַהֹלֵךְ עִמָּךְ לֹא יַרְפְּךָ וְלֹא יַעַזְבֶךָּ׃",
+    translit:  "Ḥizqû we'imṣû, 'al-tîre'û we'al-ta'arṣû mippənêhem, kî Yahweh 'ĕlōheḵā hû' hahōlēḵ 'immāḵ; lō' yarpkā welō' ya'azbekkā.",
+    trad_pt:   "Sede fortes e corajosos. Não temais nem vos aterroreis diante deles, porque o SENHOR, teu Deus, é quem vai contigo; não te abandonará nem te deixará."
+  },
+  {
+    texto: "O início da sabedoria é o temor do Senhor.",
+    ref:   "Salmos 111:10",
+    testamento: "AT",
+    original:  "רֵאשִׁית חָכְמָה יִרְאַת יְהוָה׃",
+    translit:  "Rē'šîṯ ḥoḵmāh yir'aṯ Yahweh.",
+    trad_pt:   "O princípio da sabedoria é o temor do SENHOR."
+  },
+  {
+    texto: "Buscai primeiro o reino de Deus e a sua justiça, e todas essas coisas vos serão acrescentadas.",
+    ref:   "Mateus 6:33",
+    testamento: "NT",
+    original:  "ζητεῖτε δὲ πρῶτον τὴν βασιλείαν τοῦ θεοῦ καὶ τὴν δικαιοσύνην αὐτοῦ, καὶ ταῦτα πάντα προστεθήσεται ὑμῖν.",
+    translit:  "Zēteite de prōton tēn basileian tou theou kai tēn dikaiosynēn autou, kai tauta panta prostethēsetai hymin.",
+    trad_pt:   "Buscai, porém, primeiro o reino de Deus e a sua justiça, e todas essas coisas vos serão acrescentadas."
+  },
+  {
+    texto: "Lâmpada para os meus pés é a tua palavra, e luz para o meu caminho.",
+    ref:   "Salmos 119:105",
+    testamento: "AT",
+    original:  "נֵר-לְרַגְלִי דְבָרֶךָ וְאֹור לִנְתִיבָתִי׃",
+    translit:  "Nēr-lerağlî debāreḵā we'ôr linṯîbāṯî.",
+    trad_pt:   "Lamparina para meu pé é tua palavra, e luz para minha vereda."
+  },
+  {
+    texto: "Entrega o teu caminho ao Senhor; confia nele, e ele tudo fará.",
+    ref:   "Salmos 37:5",
+    testamento: "AT",
+    original:  "גֹּול עַל-יְהוָה דַּרְכֶּךָ וּבְטַח עָלָיו וְהוּא יִפְעָל׃",
+    translit:  "Gôl 'al-Yahweh darkeḵā, ûbeṭaḥ 'ālāyw, wehû' yip'āl.",
+    trad_pt:   "Entrega ao SENHOR o teu caminho, confia nele, e ele mesmo agirá."
+  },
+  {
+    texto: "Vinde a mim, todos os que estais cansados e sobrecarregados, e eu vos aliviarei.",
+    ref:   "Mateus 11:28",
+    testamento: "NT",
+    original:  "Δεῦτε πρός με πάντες οἱ κοπιῶντες καὶ πεφορτισμένοι, κἀγὼ ἀναπαύσω ὑμᾶς.",
+    translit:  "Deute pros me pantes hoi kopiōntes kai pefortismenoi, kagō anapauso hymas.",
+    trad_pt:   "Vinde a mim, todos os que estais fatigados e sobrecarregados, e eu vos darei descanso."
+  },
+  {
+    texto: "Tudo o que pedirdes em meu nome, eu o farei, para que o Pai seja glorificado no Filho.",
+    ref:   "João 14:13",
+    testamento: "NT",
+    original:  "καὶ ὅ τι ἂν αἰτήσητε ἐν τῷ ὀνόματί μου, τοῦτο ποιήσω, ἵνα δοξασθῇ ὁ πατὴρ ἐν τῷ υἱῷ.",
+    translit:  "Kai ho ti an aitēsēte en tō onomati mou, touto poiēsō, hina doxasthē ho patēr en tō huiō.",
+    trad_pt:   "E tudo o que pedirdes em meu nome, isso farei, para que o Pai seja glorificado no Filho."
+  },
+  {
+    texto: "Não temas, porque eu sou contigo; não te assombres, porque eu sou o teu Deus.",
+    ref:   "Isaías 41:10",
+    testamento: "AT",
+    original:  "אַל-תִּירָא כִּי עִמְּךָ אָנִי אַל-תִּשְׁתָּע כִּי אֲנִי אֱלֹהֶיךָ׃",
+    translit:  "Al-tîrā' kî 'immekā 'ānî, al-tišta' kî 'ănî 'ĕlōheḵā.",
+    trad_pt:   "Não temas, pois eu sou contigo; não te angusties, pois eu sou teu Deus."
+  },
+  {
+    texto: "Eu vos darei pastores segundo o meu coração, que vos apascentem com conhecimento e com entendimento.",
+    ref:   "Jeremias 3:15",
+    testamento: "AT",
+    original:  "וְנָתַתִּי לָכֶם רֹעִים כְּלִבִּי וְרָעוּ אֶתְכֶם דֵּעָה וְהַשְׂכֵּל׃",
+    translit:  "Wenāṯattî lāḵem rō'îm kelibbî, werā'û 'eṯḵem dē'āh wehaskēl.",
+    trad_pt:   "E vos darei pastores segundo meu coração, que vos apascentem com conhecimento e discernimento."
+  }
+];
+
+/* ============================================================
+   LÓGICA DE SELEÇÃO DO VERSÍCULO
+   – Troca a cada 6 horas com base no tempo Unix
+   – Garante que todos sejam exibidos antes de repetir
+   ============================================================ */
+const INTERVALO_MS = 6 * 60 * 60 * 1000; // 6 horas
+
+function indiceAtual() {
+    const slot = Math.floor(Date.now() / INTERVALO_MS);
+    return slot % VERSICULOS.length;
+}
+
+function versiculoAtual() {
+    return VERSICULOS[indiceAtual()];
+}
+
+function msAteProximo() {
+    const agora = Date.now();
+    const slot  = Math.floor(agora / INTERVALO_MS);
+    return (slot + 1) * INTERVALO_MS - agora;
+}
+
+/* ── Formata contador regressivo ── */
+function formatarContador(ms) {
+    const h = Math.floor(ms / 3_600_000);
+    const m = Math.floor((ms % 3_600_000) / 60_000);
+    const s = Math.floor((ms % 60_000) / 1_000);
+    return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+
+/* ── Renderiza o versículo em todos os pontos da página ── */
+function renderizarVersiculo() {
+    const v = versiculoAtual();
+    const idioma = v.testamento === "AT" ? "Hebraico (Texto Massorético)" : "Grego (Texto Crítico – NA28)";
+    const flag   = v.testamento === "AT" ? "🕎" : "✝️";
+    const classe = v.testamento === "AT" ? "heb" : "grc";
+    const num    = indiceAtual() + 1;
+
+    // Cabeçalho
+    document.getElementById('vh-texto').textContent = `"${v.texto}"`;
+    document.getElementById('vh-ref').textContent   = v.ref;
+
+    // Card Palavra do Dia
+    document.getElementById('vb-texto').textContent = `"${v.texto}"`;
+    document.getElementById('vb-ref').textContent   = `— ${v.ref}`;
+    document.getElementById('vb-ciclo').textContent = `${flag} Versículo ${num} de ${VERSICULOS.length}`;
+
+    // Seção Línguas Originais
+    document.getElementById('original-card').innerHTML = `
+        <div class="original-idioma-titulo">${flag} ${idioma}</div>
+        <div class="original-texto ${classe}">${v.original}</div>
+        <div class="transliteracao">Transliteração: ${v.translit}</div>
+        <div class="traducao-pt">${v.trad_pt}</div>
+        <div class="referencia-original">— ${v.ref}</div>
+    `;
+}
+
+/* ── Atualiza o contador regressivo a cada segundo ── */
+function atualizarContador() {
+    const ms = msAteProximo();
+    const txt = `Próxima troca em: ${formatarContador(ms)}`;
+    document.getElementById('proximo-versiculo').textContent = txt;
+    document.getElementById('vh-contador').textContent = txt;
+}
+
+/* ── Verifica mudança de slot e rerenderiza se necessário ── */
+let slotAnterior = indiceAtual();
+function verificarMudanca() {
+    const novoSlot = indiceAtual();
+    if (novoSlot !== slotAnterior) {
+        slotAnterior = novoSlot;
+        // fade suave no header
+        const hdr = document.getElementById('versiculo-header');
+        hdr.classList.add('fade-out');
+        setTimeout(() => {
+            renderizarVersiculo();
+            hdr.classList.remove('fade-out');
+        }, 800);
+    }
+}
+
+/* ============================================================
+   DATA DA MENSAGEM PASTORAL
+   Exibe automaticamente a semana ISO com base no data-semana
+   ============================================================ */
+function exibirDataMensagem() {
+    const titulo = document.getElementById('titulo-mensagem');
+    const semana = titulo.getAttribute('data-semana'); // ex: "2026-W19"
+    const div    = document.getElementById('data-mensagem-pastoral');
+
+    if (semana) {
+        const [ano, w] = semana.split('-W');
+        div.textContent = `📅 Semana ${w} de ${ano} — atualizado manualmente pelo pastor`;
+    }
+}
+
+/* ── INICIALIZAÇÃO ── */
+renderizarVersiculo();
+atualizarContador();
+exibirDataMensagem();
+
+setInterval(atualizarContador, 1000);
+setInterval(verificarMudanca, 10_000); // checa mudança de slot a cada 10s
+</script>
+
 </body>
 </html>
