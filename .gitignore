@@ -1,0 +1,26 @@
+# ============================================
+# .gitignore - Igreja Gileade
+# ============================================
+
+# Banco de dados SQLite (NUNCA enviar ao GitHub)
+*.db
+*.sqlite
+*.sqlite3
+
+# Arquivos de ambiente e configuração sensível
+.env
+*.env
+
+# Pastas do editor de código
+.idea/
+.vscode/
+
+# Arquivos de sistema do Windows
+Thumbs.db
+desktop.ini
+
+# Arquivos de sistema do Mac (se usar futuramente)
+.DS_Store
+
+# Logs
+*.log
