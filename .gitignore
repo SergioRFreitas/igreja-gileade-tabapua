@@ -27,3 +27,6 @@ desktop.ini
 
 # Dependências do PHP
 vendor/
+
+# Configuração SQL com senha
+sql/
