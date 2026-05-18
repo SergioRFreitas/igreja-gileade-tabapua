@@ -24,3 +24,6 @@ desktop.ini
 
 # Logs
 *.log
+
+# Dependências do PHP
+vendor/
