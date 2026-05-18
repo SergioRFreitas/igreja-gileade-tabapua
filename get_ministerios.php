@@ -1,19 +1,19 @@
 <?php
-// get_ministerios.php - API para carregar ministérios
-
-require_once 'config.php';
-
+// get_ministerios.php - Retorna lista de ministérios em JSON
 header('Content-Type: application/json');
 
-try {
-    $pdo = conectar_banco();
-    
-    $stmt = $pdo->query("SELECT nome, descricao FROM ministerios WHERE ativo = 1 ORDER BY nome");
-    $ministerios = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-    echo json_encode($ministerios);
-    
-} catch (Exception $e) {
-    echo json_encode([]);
-}
-?>
+$ministerios = [
+    ['nome' => 'Ação Social'],
+    ['nome' => 'Casais'],
+    ['nome' => 'Eventos'],
+    ['nome' => 'Homens'],
+    ['nome' => 'Infantil'],
+    ['nome' => 'Jovens e Adolescentes'],
+    ['nome' => 'Louvor'],
+    ['nome' => 'Mídia'],
+    ['nome' => 'Mulheres'],
+    ['nome' => 'Oração e Intercessão'],
+    ['nome' => 'Patrimonial'],
+];
+
+echo json_encode($ministerios);

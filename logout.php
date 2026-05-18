@@ -10,6 +10,6 @@ $_SESSION = array();
 session_destroy();
 
 // Redireciona para a página de login
-header('Location: login.php');
+header('Location: index.php');
 exit();
 ?>

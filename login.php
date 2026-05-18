@@ -1,149 +1,101 @@
 <?php
-// login.php - Sistema de login simples
-
 session_start();
-
-// Se já estiver logado, redireciona para a lista
+require_once 'config.php';
 if (isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado'] === true) {
-    header('Location: listar_membros.php');
-    exit();
+    header('Location: listar_membros.php'); exit();
 }
-
-// Processar login
+$erro = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $usuario = trim($_POST['usuario'] ?? '');
+    $email = trim($_POST['email'] ?? '');
     $senha = trim($_POST['senha'] ?? '');
-    
-    // Usuário e senha simples (em produção, use hash!)
-    if ($usuario === 'admin' && $senha === 'admin123') {
-        $_SESSION['usuario_logado'] = true;
-        $_SESSION['usuario_nome'] = 'Administrador';
-        header('Location: listar_membros.php');
-        exit();
+    $ip = $_SERVER['REMOTE_ADDR'] ?? 'desconhecido';
+    $dispositivo = $_SERVER['HTTP_USER_AGENT'] ?? 'desconhecido';
+    $data_hora = date('d/m/Y H:i:s');
+    $pdo = conectar_banco();
+    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ? AND ativo = 1");
+    $stmt->execute([$email]);
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($usuario && $usuario['senha'] === $senha) {
+        $codigo = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
+        $expira = date('Y-m-d H:i:s', strtotime('+5 minutes'));
+        $_SESSION['codigo_2fa'] = $codigo;
+        $_SESSION['codigo_expira'] = $expira;
+        $_SESSION['usuario_id'] = $usuario['id'];
+        $_SESSION['usuario_nome'] = $usuario['nome'];
+        $_SESSION['usuario_email'] = $usuario['email'];
+        $_SESSION['ip'] = $ip;
+        $_SESSION['dispositivo'] = $dispositivo;
+        require '/var/www/igreja/vendor/autoload.php';
+        $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'igileadetabapua@gmail.com';
+            $mail->Password = 'fwouowrgxnptqqbe';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+            $mail->CharSet = 'UTF-8';
+            $mail->setFrom('igileadetabapua@gmail.com', 'Sistema Igreja');
+            $mail->addAddress($usuario['email'], $usuario['nome']);
+            $mail->Subject = 'Seu codigo de acesso';
+            $mail->Body = "Ola {$usuario['nome']}! Seu codigo de acesso e: {$codigo}. Expira em 5 minutos.";
+            $mail->send();
+            $stmt = $pdo->prepare("INSERT INTO logs_acesso (usuario, ip, data_hora, resultado, dispositivo) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute([$usuario['email'], $ip, $data_hora, 'Codigo enviado', $dispositivo]);
+            header('Location: verificar_codigo.php'); exit();
+        } catch (Exception $e) {
+            $erro = 'Erro ao enviar email: ' . $mail->ErrorInfo;
+        }
     } else {
-        $error = "Usuário ou senha incorretos!";
+        $erro = 'Email ou senha incorretos.';
+        $stmt = $pdo->prepare("INSERT INTO logs_acesso (usuario, ip, data_hora, resultado, dispositivo) VALUES (?, ?, ?, ?, ?)");
+        $stmt->execute([$email ?: '(vazio)', $ip, $data_hora, 'Falha', $dispositivo]);
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Sistema de Membros</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+    <title>Login - Sistema Igreja</title>
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .login-container {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            width: 100%;
-            max-width: 400px;
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 30px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #34495e;
-        }
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-        .btn {
-            width: 100%;
-            background-color: #3498db;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-        .btn:hover {
-            background-color: #2980b9;
-        }
-        .error {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .info {
-            background-color: #d1ecf1;
-            color: #0c5460;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-        .logo {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .logo-icon {
-            font-size: 60px;
-            color: #3498db;
-        }
+        * { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f5f5f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .login-box { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: 100%; max-width: 380px; }
+        h1 { color: #2c3e50; text-align: center; font-size: 1.5rem; margin-bottom: 25px; }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #34495e; font-size: 14px; }
+        input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
+        .btn { width: 100%; background-color: #3498db; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 5px; }
+        .error { background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center; }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="logo">
-            <div class="logo-icon">🙏</div>
-        </div>
-        
-        <h1>Acesso Restrito</h1>
-        
-        <?php if (isset($error)): ?>
-            <div class="error"><?php echo $error; ?></div>
-        <?php endif; ?>
-        
-        <div class="info">
-            <strong>Demonstração:</strong><br>
-            Usuário: admin<br>
-            Senha: admin123
-        </div>
-        
+    <div class="login-box">
+        <h1>🙏 Sistema Igreja</h1>
+        <?php if ($erro): ?><div class="error"><?php echo $erro; ?></div><?php endif; ?>
         <form method="POST">
             <div class="form-group">
-                <label for="usuario">Usuário:</label>
-                <input type="text" id="usuario" name="usuario" required>
+                <label>Email</label>
+                <input type="email" name="email" placeholder="seu@email.com" autofocus>
             </div>
-            
             <div class="form-group">
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" required>
+                <label>Senha</label>
+                <input type="password" name="senha" placeholder="Digite sua senha">
             </div>
-            
             <button type="submit" class="btn">Entrar</button>
         </form>
     </div>
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("sw.js");
+        }
+    </script>
+
 </body>
 </html>
