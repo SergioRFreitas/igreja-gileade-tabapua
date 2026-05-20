@@ -10,6 +10,6 @@ $_SESSION = array();
 session_destroy();
 
 // Redireciona para a página de login
-header('Location: index.php');
+headheader('Location: https://igrejagileadetabapua.com.br');
 exit();
 ?>

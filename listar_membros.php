@@ -154,14 +154,15 @@ try {
 <body>
     <div class="container">
         <div class="top-bar">
-            <h1>Membros da Igreja</h1>
-            <div class="user-info">
-                <span><?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></span>
-                <a href="logout.php" class="btn btn-secondary btn-sm">Sair</a>
-                <a href="logs_acesso.php" class="btn btn-secondary btn-sm">Logs</a>
-                <a href="gerenciar_usuarios.php" class="btn btn-secondary btn-sm">Usuários</a>
-            </div>
-        </div>
+    <h1>Membros da Igreja</h1>
+    <div class="user-info">
+        <span><?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></span>
+        <a href="https://igrejagileadetabapua.com.br" class="btn btn-secondary btn-sm">← Site</a>
+        <a href="logout.php" class="btn btn-secondary btn-sm">Sair</a>
+        <a href="logs_acesso.php" class="btn btn-secondary btn-sm">Logs</a>
+        <a href="gerenciar_usuarios.php" class="btn btn-secondary btn-sm">Usuários</a>
+    </div>
+</div>
 
         <div class="stats">
             <div class="stat-card">
@@ -182,7 +183,7 @@ try {
             </div>
         </div>
 
-        <a href="index.php" class="btn btn-success btn-cadastro">+ Novo Cadastro</a>
+        <a href="index.php" class="btn btn-success btn-cadastro">+ Novo Cadastro</a> <a href="exportar.php" class="btn btn-secondary btn-cadastro">📥 Exportar para Excel</a>
 
         <div class="search-bar">
             <input type="text" id="searchInput" placeholder="Buscar por nome, telefone, ministério..." oninput="filtrarMembros(this.value)">

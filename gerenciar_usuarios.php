@@ -11,14 +11,14 @@ $pdo = conectar_banco();
 
 $mensagem = '';
 $erro = '';
+$editando = null;
 
-// Adicionar usuário
+// Ações POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao'])) {
     if ($_POST['acao'] === 'adicionar') {
         $nome = trim($_POST['nome'] ?? '');
         $email = trim($_POST['email'] ?? '');
         $senha = trim($_POST['senha'] ?? '');
-
         if (empty($nome) || empty($email) || empty($senha)) {
             $erro = 'Preencha todos os campos!';
         } else {
@@ -28,6 +28,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao'])) {
                 $mensagem = "Usuário '$nome' cadastrado com sucesso!";
             } catch (Exception $e) {
                 $erro = 'Email já cadastrado!';
+            }
+        }
+    } elseif ($_POST['acao'] === 'editar') {
+        $id = $_POST['id'];
+        $nome = trim($_POST['nome'] ?? '');
+        $email = trim($_POST['email'] ?? '');
+        $senha = trim($_POST['senha'] ?? '');
+        if (empty($nome) || empty($email)) {
+            $erro = 'Nome e email são obrigatórios!';
+        } else {
+            try {
+                if (!empty($senha)) {
+                    $stmt = $pdo->prepare("UPDATE usuarios SET nome=?, email=?, senha=? WHERE id=?");
+                    $stmt->execute([$nome, $email, $senha, $id]);
+                } else {
+                    $stmt = $pdo->prepare("UPDATE usuarios SET nome=?, email=? WHERE id=?");
+                    $stmt->execute([$nome, $email, $id]);
+                }
+                $mensagem = "Usuário '$nome' atualizado com sucesso!";
+            } catch (Exception $e) {
+                $erro = 'Email já cadastrado por outro usuário!';
             }
         }
     } elseif ($_POST['acao'] === 'toggle') {
@@ -41,6 +62,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao'])) {
     }
 }
 
+// Carregar usuário para edição
+if (isset($_GET['editar'])) {
+    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE id = ?");
+    $stmt->execute([$_GET['editar']]);
+    $editando = $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 $usuarios = $pdo->query("SELECT * FROM usuarios ORDER BY nome")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
@@ -48,8 +76,7 @@ $usuarios = $pdo->query("SELECT * FROM usuarios ORDER BY nome")->fetchAll(PDO::F
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#2c3e50">
+    <link rel="icon" href="imagens/favicon.ico" type="image/x-icon">
     <title>Usuários - Sistema Igreja</title>
     <style>
         * { box-sizing: border-box; }
@@ -65,6 +92,7 @@ $usuarios = $pdo->query("SELECT * FROM usuarios ORDER BY nome")->fetchAll(PDO::F
         .btn-danger { background-color: #e74c3c; }
         .btn-warning { background-color: #f39c12; }
         .btn-secondary { background-color: #95a5a6; }
+        .btn-edit { background-color: #3498db; }
         .success { background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 15px; }
         .error { background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 15px; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
@@ -74,6 +102,7 @@ $usuarios = $pdo->query("SELECT * FROM usuarios ORDER BY nome")->fetchAll(PDO::F
         .inativo { color: #e74c3c; font-weight: bold; }
         .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
         .card { background: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+        .card-edit { background: #eaf4fb; border: 2px solid #3498db; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
         .row { display: flex; gap: 15px; flex-wrap: wrap; }
         .col { flex: 1; min-width: 200px; }
         @media (max-width: 600px) { .row { flex-direction: column; } .col { min-width: 100%; } .btn { width: 100%; margin: 3px 0; } }
@@ -83,12 +112,46 @@ $usuarios = $pdo->query("SELECT * FROM usuarios ORDER BY nome")->fetchAll(PDO::F
 <div class="container">
     <div class="top-bar">
         <h1>👥 Gerenciar Usuários</h1>
-        <a href="listar_membros.php" class="btn btn-secondary">Voltar</a>
+        <a href="listar_membros.php" class="btn btn-secondary">← Voltar</a>
     </div>
 
     <?php if ($mensagem): ?><div class="success"><?php echo $mensagem; ?></div><?php endif; ?>
     <?php if ($erro): ?><div class="error"><?php echo $erro; ?></div><?php endif; ?>
 
+    <?php if ($editando): ?>
+    <!-- Formulário de edição -->
+    <div class="card-edit">
+        <h3>✏️ Editar Usuário</h3>
+        <form method="POST">
+            <input type="hidden" name="acao" value="editar">
+            <input type="hidden" name="id" value="<?php echo $editando['id']; ?>">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input type="text" name="nome" value="<?php echo htmlspecialchars($editando['nome']); ?>" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" value="<?php echo htmlspecialchars($editando['email']); ?>" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Nova Senha (deixe em branco para manter a atual)</label>
+                        <input type="text" name="senha" placeholder="Nova senha">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">💾 Salvar Alterações</button>
+            <a href="gerenciar_usuarios.php" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+    <?php else: ?>
     <!-- Formulário de cadastro -->
     <div class="card">
         <h3>➕ Novo Usuário</h3>
@@ -119,6 +182,7 @@ $usuarios = $pdo->query("SELECT * FROM usuarios ORDER BY nome")->fetchAll(PDO::F
             <button type="submit" class="btn btn-success">Cadastrar Usuário</button>
         </form>
     </div>
+    <?php endif; ?>
 
     <!-- Lista de usuários -->
     <h3>👤 Usuários Cadastrados</h3>
@@ -130,7 +194,6 @@ $usuarios = $pdo->query("SELECT * FROM usuarios ORDER BY nome")->fetchAll(PDO::F
                     <th>Email</th>
                     <th>Senha</th>
                     <th>Status</th>
-                    <th>Cadastrado em</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -139,12 +202,12 @@ $usuarios = $pdo->query("SELECT * FROM usuarios ORDER BY nome")->fetchAll(PDO::F
                 <tr>
                     <td><?php echo htmlspecialchars($u['nome']); ?></td>
                     <td><?php echo htmlspecialchars($u['email']); ?></td>
-                    <td data-label="Senha"><?php echo htmlspecialchars($u['senha']); ?></td>
+                    <td><?php echo htmlspecialchars($u['senha']); ?></td>
                     <td class="<?php echo $u['ativo'] ? 'ativo' : 'inativo'; ?>">
                         <?php echo $u['ativo'] ? '✅ Ativo' : '❌ Inativo'; ?>
                     </td>
-                    <td><?php echo htmlspecialchars($u['criado_em']); ?></td>
                     <td>
+                        <a href="gerenciar_usuarios.php?editar=<?php echo $u['id']; ?>" class="btn btn-edit">✏️ Editar</a>
                         <form method="POST" style="display:inline;">
                             <input type="hidden" name="acao" value="toggle">
                             <input type="hidden" name="id" value="<?php echo $u['id']; ?>">
@@ -162,12 +225,5 @@ $usuarios = $pdo->query("SELECT * FROM usuarios ORDER BY nome")->fetchAll(PDO::F
         </table>
     </div>
 </div>
-
-    <script>
-        if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("sw.js");
-        }
-    </script>
-
 </body>
 </html>

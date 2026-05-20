@@ -1,42 +1,42 @@
 <?php
 session_start();
 
-// Verificar se está logado
 if (!isset($_SESSION['usuario_logado']) || $_SESSION['usuario_logado'] !== true) {
     header('Location: login.php');
     exit();
 }
 
 require_once 'config.php';
+$pdo = conectar_banco();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
+if (isset($_GET['id'])) {
     try {
-        $id = $_POST['id'];
-        
+        $id = intval($_GET['id']);
+
         // Verificar se membro existe
         $stmt = $pdo->prepare("SELECT nome FROM membros WHERE id = ?");
         $stmt->execute([$id]);
         $membro = $stmt->fetch();
-        
+
         if (!$membro) {
-            throw new Exception("Membro não encontrado");
+            $_SESSION['error'] = "Membro não encontrado!";
+            header('Location: listar_membros.php');
+            exit();
         }
-        
+
+        // Excluir filhos relacionados primeiro
+        $pdo->prepare("DELETE FROM filhos WHERE membro_id = ?")->execute([$id]);
+
         // Excluir membro
-        $stmt = $pdo->prepare("DELETE FROM membros WHERE id = ?");
-        $stmt->execute([$id]);
-        
+        $pdo->prepare("DELETE FROM membros WHERE id = ?")->execute([$id]);
+
         $_SESSION['success'] = "Membro '{$membro['nome']}' excluído com sucesso!";
-        
+
     } catch (Exception $e) {
         $_SESSION['error'] = "Erro ao excluir: " . $e->getMessage();
     }
-    
-    header('Location: listar_membros.php');
-    exit();
 }
 
-// Se não for POST, redirecionar
 header('Location: listar_membros.php');
 exit();
 ?>
