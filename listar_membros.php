@@ -157,7 +157,7 @@ try {
     <h1>Membros da Igreja</h1>
     <div class="user-info">
         <span><?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></span>
-        <a href="https://igrejagileadetabapua.com.br" class="btn btn-secondary btn-sm">← Site</a>
+        <a href="index.php" class="btn btn-secondary btn-sm">← Cadastro</a>
         <a href="logout.php" class="btn btn-secondary btn-sm">Sair</a>
         <a href="logs_acesso.php" class="btn btn-secondary btn-sm">Logs</a>
         <a href="gerenciar_usuarios.php" class="btn btn-secondary btn-sm">Usuários</a>
