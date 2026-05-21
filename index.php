@@ -162,7 +162,7 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="telefone_conjuge">Telefone do Cônjuge/Parceiro(a)</label>
-                            <input type="tel" id="telefone_conjuge" name="telefone_conjuge" placeholder="(11) 99999-9999" maxlength="15" disabled>
+                            <input type="tel" id="telefone_conjuge" name="telefone_conjuge" placeholder="(85) 99999-9999" maxlength="15" disabled>
                         </div>
                     </div>
                 </div>
