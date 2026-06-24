@@ -221,6 +221,13 @@
                                 <option value="Presbítera">Presbítera</option>
                                 <option value="Levita">Levita (Músico)</option>
                                 <option value="Evangelista">Evangelista</option>
+                                <option value="Líder de Jovens">Líder de Jovens</option>
+                                <option value="Lider de Mídias">Líder de Mídias</option>
+                                <option value="Lider de Mulheres">Líder de Mulheres</option>
+                                <option value="Lider de Homens">Líder de Homens</option>
+                                <option value="Lider Infantil">Líder de Infantil</option>
+                                <option value="Lider Casais">Líder de Casais</option>
+                                <option value="Lider Oração">Líder de Oração</option>
                             </select>
                         </div>
                     </div>
