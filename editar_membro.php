@@ -514,7 +514,7 @@ $filhos = $stmt_filhos->fetchAll(PDO::FETCH_ASSOC);
                             <label>Função na Igreja</label>
                             <select name="funcao">
                                 <option value="">Selecione</option>
-                                <?php foreach (['Membro', 'Diácono', 'Diaconisa', 'Pastor', 'Pastora', 'Auxiliar', 'Ajudante', 'Presbítero', 'Presbítera', 'Levita (Músico)', 'Evangelista'] as $f): ?>
+                                <?php foreach (['Membro', 'Diácono', 'Diaconisa', 'Pastor', 'Pastora', 'Auxiliar', 'Ajudante', 'Presbítero', 'Presbítera', 'Levita (Músico)', 'Evangelista', 'Líder de Jovens', 'Líder de Mídias', 'Líder de Mulheres', 'Líder de Homens', 'Líder de Infantil', 'Líder de Casais', 'Líder de Oração'] as $f): ?>
                                     <option value="<?php echo $f; ?>" <?php echo $membro['funcao'] == $f ? 'selected' : ''; ?>><?php echo $f; ?></option>
                                 <?php endforeach; ?>
                             </select>
