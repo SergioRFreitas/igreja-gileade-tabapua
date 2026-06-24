@@ -502,7 +502,7 @@ $filhos = $stmt_filhos->fetchAll(PDO::FETCH_ASSOC);
                             <select name="ministrio">
                                 <option value="">Nenhum</option>
                                 <?php
-                                $mins = ['Ação Social', 'Casais', 'Eventos', 'Homens', 'Infantil', 'Jovens e Adolescentes', 'Louvor', 'Mídia', 'Mulheres', 'Oração e Intercessão', 'Patrimonial'];
+                                $mins = ['Ação Social', 'Casais', 'Eventos', 'Homens', 'Infantil', 'Jovens e Adolescentes', 'Louvor', 'Mídia', 'Mulheres', 'Oração e Intercessão', 'Patrimonial', 'Pastoral', 'Patrimonial', 'Tesouraria'];
                                 foreach ($mins as $m): ?>
                                     <option value="<?php echo $m; ?>" <?php echo $membro['ministrio'] == $m ? 'selected' : ''; ?>><?php echo $m; ?></option>
                                 <?php endforeach; ?>

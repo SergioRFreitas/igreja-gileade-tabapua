@@ -12,7 +12,10 @@ $ministerios = [
     ['nome' => 'Louvor'],
     ['nome' => 'Mídia'],
     ['nome' => 'Mulheres'],
-    ['nome' => 'Oração e Intercessão'],
+    ['nome' => 'Oração e I  ntercessão'],
+    ['nome' => 'Pastoral'],
+    ['nome' => 'Tesouraria'],
+    ['nome' => 'Evangelismo'],
     ['nome' => 'Patrimonial'],
 ];
 
