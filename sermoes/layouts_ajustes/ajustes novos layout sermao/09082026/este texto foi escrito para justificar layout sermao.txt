@@ -1,0 +1,3 @@
+este texto foi escrito para justificar nesta pasta que este arquivo foi desenvolvido pelo clude para ajustar a foto do layout da página de sermões, da igreja, mas este último não utilizei na página pois achei desnecessário.
+
+Então deixei conforme inicial, mas salvei caso mude de ideia, já tenho o arquivo configurado para utilizar

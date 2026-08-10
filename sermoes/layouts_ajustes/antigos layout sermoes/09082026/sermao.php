@@ -1,0 +1,142 @@
+<?php
+// sermao.php - Página de leitura do Sermão Pastoral
+// Igreja Gileade Tabapuá
+require_once 'config.php';
+
+$pdo = conectar_banco();
+
+// Se vier ?id=X, mostra aquele sermão específico (útil para histórico futuro).
+// Sem id, mostra sempre o mais recente - é para onde o botão da home aponta.
+if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
+    $stmt = $pdo->prepare("SELECT * FROM sermoes WHERE id = ?");
+    $stmt->execute([$_GET['id']]);
+} else {
+    $stmt = $pdo->query("SELECT * FROM sermoes ORDER BY data_sermao DESC, id DESC LIMIT 1");
+}
+$sermao = $stmt->fetch();
+
+if (!$sermao) {
+    http_response_code(404);
+    $tituloPagina = "Sermão não encontrado";
+} else {
+    $tituloPagina = htmlspecialchars($sermao['titulo']) . " - Igreja Gileade Tabapuá";
+    $dataFormatada = formatar_data($sermao['data_sermao']);
+    // Fundo: se o sermão tiver uma imagem definida, usa ela; senão, gradiente padrão
+    $temImagem = !empty($sermao['imagem_fundo']);
+    $estiloFundo = $temImagem
+        ? "background-image: linear-gradient(rgba(20,20,35,0.72), rgba(20,20,35,0.72)), url('" . htmlspecialchars($sermao['imagem_fundo']) . "');"
+        : "background-image: linear-gradient(135deg, #1f2b3e 0%, #3a4d6b 50%, #2c3e50 100%);";
+}
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+<title><?= $tituloPagina ?></title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css" />
+<style>
+    body {
+        margin: 0;
+    }
+    .sermao-hero {
+        <?= $estiloFundo ?? '' ?>
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        padding: 80px 20px 60px;
+        text-align: center;
+    }
+    .sermao-hero h1 {
+        font-weight: 700;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+    .sermao-hero .preletor {
+        font-size: 1.1rem;
+        opacity: 0.9;
+    }
+    .sermao-hero .texto-base {
+        font-style: italic;
+        opacity: 0.85;
+        margin-top: 6px;
+    }
+    .sermao-corpo {
+        max-width: 760px;
+        margin: -40px auto 60px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        padding: 40px;
+        line-height: 1.8;
+        font-size: 1.08rem;
+        color: #2c3e50;
+    }
+    .sermao-corpo p {
+        margin-bottom: 1.2em;
+    }
+    .sermao-corpo h3 {
+        color: #2c3e50;
+        margin-top: 1.6em;
+        margin-bottom: 0.6em;
+        font-size: 1.25rem;
+    }
+    .sermao-corpo blockquote {
+        border-left: 4px solid #3498db;
+        background: #f4f8fb;
+        padding: 12px 20px;
+        margin: 1.2em 0;
+        font-style: italic;
+        color: #2c3e50;
+        border-radius: 0 6px 6px 0;
+    }
+    .voltar-link {
+        display: inline-block;
+        margin-top: 10px;
+    }
+    @media (max-width: 600px) {
+        .sermao-hero { padding: 60px 15px 40px; }
+        .sermao-corpo { padding: 25px; margin-top: -25px; border-radius: 8px; }
+    }
+</style>
+</head>
+<body>
+
+<?php if (!$sermao): ?>
+    <div class="container text-center py-5">
+        <h1>Sermão não encontrado</h1>
+        <p>O sermão solicitado não está disponível.</p>
+        <a href="index.html" class="btn btn-primary">Voltar para a página inicial</a>
+    </div>
+<?php else: ?>
+
+    <header class="sermao-hero">
+        <div class="mb-3">
+            <a href="index.html" class="text-white text-decoration-none voltar-link">&larr; Voltar à página inicial</a>
+        </div>
+        <h1 class="display-5"><?= htmlspecialchars($sermao['titulo']) ?></h1>
+        <p class="preletor">Preletor: <strong><?= htmlspecialchars($sermao['preletor']) ?></strong> &middot; <?= $dataFormatada ?></p>
+        <?php if (!empty($sermao['texto_base'])): ?>
+            <p class="texto-base"><?= htmlspecialchars($sermao['texto_base']) ?></p>
+        <?php endif; ?>
+        <div class="mt-2">
+            <a href="sermao_pdf.php?id=<?= $sermao['id'] ?>" class="btn btn-outline-light btn-sm" target="_blank">
+                📄 Baixar em PDF
+            </a>
+            <a href="imagem_sermao.php?id=<?= $sermao['id'] ?>" class="btn btn-outline-light btn-sm" download="sermao.png">
+                🖼️ Baixar imagem para compartilhar
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="sermao-corpo">
+            <?= $sermao['conteudo'] ?>
+        </div>
+    </main>
+
+<?php endif; ?>
+
+</body>
+</html>
