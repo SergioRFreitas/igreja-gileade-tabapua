@@ -161,7 +161,7 @@ if ($autenticado && !$sermaoEditando) {
         </div>
 
         <div class="form-group">
-            <label for="preletor">Preletor <span style="color:#e74c3c">*</span></label>
+            <label for="preletor">Pregador/Preletor <span style="color:#e74c3c">*</span></label>
             <input type="text" id="preletor" name="preletor" required value="<?= htmlspecialchars($sermaoEditando['preletor']) ?>">
         </div>
 
@@ -231,7 +231,7 @@ if ($autenticado && !$sermaoEditando) {
             <thead>
                 <tr>
                     <th>Título</th>
-                    <th>Preletor</th>
+                    <th>Pregador/Preletor</th>
                     <th>Data</th>
                     <th>Ações</th>
                 </tr>
@@ -240,7 +240,7 @@ if ($autenticado && !$sermaoEditando) {
                 <?php foreach ($listaSermoes as $s): ?>
                 <tr>
                     <td data-label="Título"><?= htmlspecialchars($s['titulo']) ?></td>
-                    <td data-label="Preletor"><?= htmlspecialchars($s['preletor']) ?></td>
+                    <td data-label="Pregador/Preletor"><?= htmlspecialchars($s['preletor']) ?></td>
                     <td data-label="Data"><?= formatar_data($s['data_sermao']) ?></td>
                     <td data-label="Ações" class="acoes">
                         <a href="editar_sermao.php?editar=<?= $s['id'] ?>" class="btn btn-sm">Editar</a>

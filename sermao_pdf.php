@@ -96,7 +96,7 @@ $dataFormatada = formatar_data($sermao['data_sermao']);
 <div class="cabecalho">
     <div class="igreja">Igreja Cristã Gileade Tabapuá</div>
     <h1><?= htmlspecialchars($sermao['titulo']) ?></h1>
-    <div class="info">Preletor: <?= htmlspecialchars($sermao['preletor']) ?> &middot; <?= $dataFormatada ?></div>
+    <div class="info">Pregador/Preletor: <?= htmlspecialchars($sermao['preletor']) ?> &middot; <?= $dataFormatada ?></div>
     <?php if (!empty($sermao['texto_base'])): ?>
         <div class="texto-base"><?= htmlspecialchars($sermao['texto_base']) ?></div>
     <?php endif; ?>

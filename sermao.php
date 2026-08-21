@@ -120,7 +120,7 @@ if (!$sermao) {
             <a href="index.html" class="text-white text-decoration-none voltar-link">&larr; Voltar à página inicial</a>
         </div>
         <h1 class="display-5"><?= htmlspecialchars($sermao['titulo']) ?></h1>
-        <p class="preletor">Preletor: <strong><?= htmlspecialchars($sermao['preletor']) ?></strong> &middot; <?= $dataFormatada ?></p>
+        <p class="preletor">Pregrador/Preletor: <strong><?= htmlspecialchars($sermao['preletor']) ?></strong> &middot; <?= $dataFormatada ?></p>
         <?php if (!empty($sermao['texto_base'])): ?>
             <p class="texto-base"><?= htmlspecialchars($sermao['texto_base']) ?></p>
         <?php endif; ?>

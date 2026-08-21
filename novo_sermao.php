@@ -87,7 +87,7 @@ require_once 'sermao_auth.php';
         </div>
 
         <div class="form-group">
-            <label for="preletor">Preletor <span style="color:#e74c3c">*</span></label>
+            <label for="preletor">Pregador/Preletor <span style="color:#e74c3c">*</span></label>
             <input type="text" id="preletor" name="preletor" required placeholder="Nome de quem pregou">
         </div>
 
