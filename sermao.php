@@ -26,6 +26,10 @@ if (!$sermao) {
     $estiloFundo = $temImagem
         ? "background-image: linear-gradient(rgba(20,20,35,0.72), rgba(20,20,35,0.72)), url('" . htmlspecialchars($sermao['imagem_fundo']) . "');"
         : "background-image: linear-gradient(135deg, #1f2b3e 0%, #3a4d6b 50%, #2c3e50 100%);";
+
+    // URL completa da página deste sermão, para o botão "Copiar link"
+    $protocolo = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
+    $linkSermao = $protocolo . $_SERVER['HTTP_HOST'] . '/sermao.php?id=' . $sermao['id'];
 }
 ?>
 <!DOCTYPE html>
@@ -99,6 +103,11 @@ if (!$sermao) {
         display: inline-block;
         margin-top: 10px;
     }
+    #btn-copiar-link.copiado {
+        background-color: #28a745 !important;
+        border-color: #28a745 !important;
+        color: #fff !important;
+    }
     @media (max-width: 600px) {
         .sermao-hero { padding: 60px 15px 40px; }
         .sermao-corpo { padding: 25px; margin-top: -25px; border-radius: 8px; }
@@ -131,6 +140,9 @@ if (!$sermao) {
             <a href="imagem_sermao.php?id=<?= $sermao['id'] ?>" class="btn btn-outline-light btn-sm" download="sermao.png">
                 🖼️ Baixar imagem para compartilhar
             </a>
+            <button type="button" id="btn-copiar-link" class="btn btn-outline-light btn-sm" data-link="<?= htmlspecialchars($linkSermao) ?>">
+                🔗 Copiar link
+            </button>
         </div>
     </header>
 
@@ -139,6 +151,27 @@ if (!$sermao) {
             <?= $sermao['conteudo'] ?>
         </div>
     </main>
+
+    <script>
+        // Copia o link do sermão para a área de transferência,
+        // pronto para colar na legenda ao compartilhar a imagem.
+        document.getElementById('btn-copiar-link').addEventListener('click', function () {
+            var botao = this;
+            var link = botao.getAttribute('data-link');
+
+            navigator.clipboard.writeText(link).then(function () {
+                var textoOriginal = botao.innerHTML;
+                botao.innerHTML = '✅ Link copiado!';
+                botao.classList.add('copiado');
+                setTimeout(function () {
+                    botao.innerHTML = textoOriginal;
+                    botao.classList.remove('copiado');
+                }, 2000);
+            }).catch(function () {
+                alert('Não foi possível copiar automaticamente. Link: ' + link);
+            });
+        });
+    </script>
 
 <?php endif; ?>
 

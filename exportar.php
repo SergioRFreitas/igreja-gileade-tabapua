@@ -13,6 +13,7 @@ $pdo = conectar_banco();
 $stmt = $pdo->query("SELECT 
     nome,
     email,
+    cpf,
     telefone,
     data_nascimento,
     sexo,
@@ -52,6 +53,7 @@ $output = fopen('php://output', 'w');
 fputcsv($output, [
     'Nome',
     'E-mail',
+    'CPF',
     'Telefone',
     'Data de Nascimento',
     'Sexo',
@@ -75,6 +77,7 @@ foreach ($membros as $m) {
     fputcsv($output, [
         $m['nome'],
         $m['email'],
+        $m['cpf'],
         $m['telefone'],
         $m['data_nascimento'] ? date('d/m/Y', strtotime($m['data_nascimento'])) : '',
         $m['sexo'],

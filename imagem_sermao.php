@@ -107,6 +107,10 @@ textoCentralizado($img, 16, $H - 100, $fonteReg, formatar_data($sermao['data_ser
 $corLinha = imagecolorallocate($img, 80, 120, 160);
 imagefilledrectangle($img, ($W/2) - 60, $H - 170, ($W/2) + 60, $H - 167, $corLinha);
 
+// Chamada para leitura completa (o link em si vai na legenda da publicação)
+$linkTexto = "Leia a mensagem completa acessando o link.";
+textoCentralizado($img, 17, $H - 50, $fonteReg, $linkTexto, $cinzaClaro, $W);
+
 header('Content-Type: image/png');
 header('Content-Disposition: inline; filename="sermao_' . $sermao['id'] . '.png"');
 imagepng($img);

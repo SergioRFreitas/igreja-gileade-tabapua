@@ -9,18 +9,46 @@ if (!isset($_SESSION['usuario_logado']) || $_SESSION['usuario_logado'] !== true)
 require_once 'config.php';
 $pdo = conectar_banco();
 
+// Valida CPF de verdade (calcula os 2 dígitos verificadores), não só a quantidade de números.
+function cpfValido(string $cpf): bool {
+    if (strlen($cpf) !== 11) return false;
+    if (preg_match('/^(\d)\1{10}$/', $cpf)) return false;
+    for ($t = 9; $t <= 10; $t++) {
+        $soma = 0;
+        for ($i = 0; $i < $t; $i++) {
+            $soma += (int)$cpf[$i] * (($t + 1) - $i);
+        }
+        $digito = ((10 * $soma) % 11) % 10;
+        if ((int)$cpf[$t] !== $digito) return false;
+    }
+    return true;
+}
+
+// Padroniza nomes próprios: cada palavra com inicial maiúscula, exceto
+// preposições comuns (de, da, do, dos, das, e), que ficam em minúsculo.
+function formatarNomeProprio(string $nome): string {
+    $nome = mb_strtolower(trim($nome), 'UTF-8');
+    $nome = mb_convert_case($nome, MB_CASE_TITLE, 'UTF-8');
+    $preposicoes = ['De', 'Da', 'Do', 'Dos', 'Das', 'E'];
+    foreach ($preposicoes as $prep) {
+        $nome = preg_replace('/\b' . $prep . '\b/u', mb_strtolower($prep, 'UTF-8'), $nome);
+    }
+    return mb_convert_case(mb_substr($nome, 0, 1, 'UTF-8'), MB_CASE_UPPER, 'UTF-8') . mb_substr($nome, 1, null, 'UTF-8');
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $id = $_POST['id'];
-        $nome = trim($_POST['nome']);
+        $nome = formatarNomeProprio(trim($_POST['nome']));
         $email = trim($_POST['email']);
+        $cpf = preg_replace('/\D/', '', $_POST['cpf'] ?? '');
         $telefone = trim($_POST['telefone']);
         $endereco = trim($_POST['endereco']);
         $data_nascimento = trim($_POST['data_nascimento'] ?? '');
         $sexo = trim($_POST['sexo'] ?? '');
         $naturalidade = trim($_POST['naturalidade'] ?? '');
         $estado_civil = trim($_POST['estado_civil'] ?? '');
-        $nome_conjuge = trim($_POST['nome_conjuge'] ?? '');
+        $nome_conjuge = !empty($_POST['nome_conjuge']) ? formatarNomeProprio(trim($_POST['nome_conjuge'])) : '';
         $telefone_conjuge = trim($_POST['telefone_conjuge'] ?? '');
         $batismo_aguas = trim($_POST['batismo_aguas'] ?? '');
         $ministrio = trim($_POST['ministrio'] ?? '');
@@ -34,15 +62,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($situacao === 'Transferido' && empty($data_saida)) {
             throw new Exception("É obrigatório informar a data de saída para membros transferidos");
         }
+        // CPF é opcional aqui (membros antigos podem não ter), mas se for preenchido, precisa ser válido
+        if (!empty($cpf)) {
+            if (!cpfValido($cpf)) throw new Exception("O CPF informado não é válido");
+            $stmt = $pdo->prepare("SELECT id FROM membros WHERE cpf = ? AND id != ?");
+            $stmt->execute([$cpf, $id]);
+            if ($stmt->fetch()) throw new Exception("Este CPF já está cadastrado em outro membro");
+        } else {
+            $cpf = null;
+        }
 
         // Atualizar membro
-        $sql = "UPDATE membros SET nome=?, email=?, telefone=?, endereco=?, data_nascimento=?, sexo=?, naturalidade=?,
+        $sql = "UPDATE membros SET nome=?, email=?, cpf=?, telefone=?, endereco=?, data_nascimento=?, sexo=?, naturalidade=?,
                 estado_civil=?, nome_conjuge=?, telefone_conjuge=?, batismo_aguas=?, ministrio=?, funcao=?,
                 data_filiacao=?, situacao=?, data_saida=?, observacao=? WHERE id=?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             $nome,
             $email,
+            $cpf,
             $telefone,
             $endereco,
             $data_nascimento,
@@ -74,6 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             foreach ($_POST['filhos_existentes'] as $filho_id => $filho) {
                 $nome_filho = trim($filho['nome'] ?? '');
                 if (!empty($nome_filho)) {
+                    $nome_filho = formatarNomeProprio($nome_filho);
                     $stmt_upd->execute([
                         $nome_filho,
                         trim($filho['data_nascimento'] ?? ''),
@@ -91,6 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             foreach ($_POST['filhos_novos'] as $filho) {
                 $nome_filho = trim($filho['nome'] ?? '');
                 if (!empty($nome_filho)) {
+                    $nome_filho = formatarNomeProprio($nome_filho);
                     $stmt_ins->execute([
                         $id,
                         $nome_filho,
@@ -357,6 +397,14 @@ $filhos = $stmt_filhos->fetchAll(PDO::FETCH_ASSOC);
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
+                            <label>CPF</label>
+                            <input type="text" id="cpf" name="cpf" value="<?php echo htmlspecialchars($membro['cpf'] ?? ''); ?>" maxlength="14" placeholder="000.000.000-00" inputmode="numeric">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
                             <label>Telefone</label>
                             <input type="tel" id="telefone" name="telefone" value="<?php echo htmlspecialchars($membro['telefone']); ?>" maxlength="15">
                         </div>
@@ -571,6 +619,15 @@ $filhos = $stmt_filhos->fetchAll(PDO::FETCH_ASSOC);
         }
         mascaraTelefone(document.getElementById('telefone'));
         mascaraTelefone(document.getElementById('telefone_conjuge'));
+
+        // Máscara de CPF (000.000.000-00)
+        document.getElementById('cpf').addEventListener('input', function() {
+            let v = this.value.replace(/\D/g, '').substring(0, 11);
+            v = v.replace(/(\d{3})(\d)/, '$1.$2');
+            v = v.replace(/(\d{3})(\d)/, '$1.$2');
+            v = v.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            this.value = v;
+        });
 
         // Calcular idade
         function calcularIdade(inputDate, displayId) {
