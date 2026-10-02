@@ -1,3 +1,9 @@
+<?php
+// session_start() precisa ser a primeiríssima coisa do arquivo, antes de
+// qualquer HTML, para que o cookie de sessão seja enviado corretamente.
+session_start();
+$cadastroComSucesso = isset($_SESSION['success']);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -9,214 +15,41 @@
     <meta name="theme-color" content="#2c3e50">
     <title>Cadastro de Membros - Igreja Gileade</title>
     <style>
-        * {
-            box-sizing: border-box;
+        * { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 10px; background-color: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; font-size: clamp(1.2rem, 5vw, 1.8rem); }
+        h3 { font-size: clamp(1rem, 4vw, 1.2rem); }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #34495e; font-size: 14px; }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], textarea, select {
+            width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;
         }
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 10px;
-            background-color: #f5f5f5;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            font-size: clamp(1.2rem, 5vw, 1.8rem);
-        }
-
-        h3 {
-            font-size: clamp(1rem, 4vw, 1.2rem);
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #34495e;
-            font-size: 14px;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        input[type="date"],
-        textarea,
-        select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        input:disabled,
-        select:disabled {
-            background-color: #f0f0f0;
-            color: #aaa;
-            cursor: not-allowed;
-        }
-
-        .btn {
-            background-color: #3498db;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin: 5px 5px 5px 0;
-            display: inline-block;
-            text-decoration: none;
-        }
-
-        .btn:hover {
-            background-color: #2980b9;
-        }
-
-        .btn-success {
-            background-color: #27ae60;
-        }
-
-        .btn-success:hover {
-            background-color: #219a52;
-        }
-
-        .btn-secondary {
-            background-color: #95a5a6;
-        }
-
-        .btn-secondary:hover {
-            background-color: #7f8c8d;
-        }
-
-        .btn-danger {
-            background-color: #e74c3c;
-        }
-
-        .btn-danger:hover {
-            background-color: #c0392b;
-        }
-
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .row {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .col {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .success {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-
-        .error {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-
-        .obrigatorio {
-            color: #e74c3c;
-            font-size: 12px;
-            margin-left: 4px;
-        }
-
-        .filhos-item {
-            background: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 10px;
-            position: relative;
-            padding-top: 40px;
-        }
-
-        .filhos-item .btn-remove {
-            background: #e74c3c;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            padding: 4px 10px;
-            cursor: pointer;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 13px;
-        }
-
-        #add-filho-btn {
-            background-color: #27ae60;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 16px;
-            cursor: pointer;
-            margin-top: 5px;
-            font-size: 15px;
-            width: 100%;
-        }
-
-        #add-filho-btn:hover {
-            background-color: #219a52;
-        }
-
+        input:disabled, select:disabled { background-color: #f0f0f0; color: #aaa; cursor: not-allowed; }
+        .btn { background-color: #3498db; color: white; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin: 5px 5px 5px 0; display: inline-block; text-decoration: none; }
+        .btn:hover { background-color: #2980b9; }
+        .btn-success { background-color: #27ae60; }
+        .btn-success:hover { background-color: #219a52; }
+        .btn-secondary { background-color: #95a5a6; }
+        .btn-secondary:hover { background-color: #7f8c8d; }
+        .btn-danger { background-color: #e74c3c; }
+        .btn-danger:hover { background-color: #c0392b; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+        .row { display: flex; gap: 15px; flex-wrap: wrap; }
+        .col { flex: 1; min-width: 200px; }
+        .success { background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+        .error { background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+        .obrigatorio { color: #e74c3c; font-size: 12px; margin-left: 4px; }
+        .filhos-item { background: #f9f9f9; border: 1px solid #ddd; border-radius: 5px; padding: 15px; margin-bottom: 10px; position: relative; padding-top: 40px; }
+        .filhos-item .btn-remove { background: #e74c3c; color: white; border: none; border-radius: 3px; padding: 4px 10px; cursor: pointer; position: absolute; top: 10px; right: 10px; font-size: 13px; }
+        #add-filho-btn { background-color: #27ae60; color: white; border: none; border-radius: 5px; padding: 10px 16px; cursor: pointer; margin-top: 5px; font-size: 15px; width: 100%; }
+        #add-filho-btn:hover { background-color: #219a52; }
         @media (max-width: 600px) {
-            .container {
-                padding: 15px;
-                border-radius: 5px;
-            }
-
-            .row {
-                flex-direction: column;
-                gap: 0;
-            }
-
-            .col {
-                min-width: 100%;
-            }
-
-            .btn {
-                width: 100%;
-                text-align: center;
-                margin: 5px 0;
-            }
-
-            .top-bar {
-                flex-direction: column;
-            }
+            .container { padding: 15px; border-radius: 5px; }
+            .row { flex-direction: column; gap: 0; }
+            .col { min-width: 100%; }
+            .btn { width: 100%; text-align: center; margin: 5px 0; }
+            .top-bar { flex-direction: column; }
         }
     </style>
 </head>
@@ -230,15 +63,11 @@
         </div>
 
         <?php
-        session_start();
-        $cadastroComSucesso = isset($_SESSION['success']);
         if (isset($_SESSION['success'])): ?>
-            <div class="success"><?php echo $_SESSION['success'];
-                                    unset($_SESSION['success']); ?></div>
+            <div class="success"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></div>
         <?php endif; ?>
         <?php if (isset($_SESSION['error'])): ?>
-            <div class="error"><?php echo $_SESSION['error'];
-                                unset($_SESSION['error']); ?></div>
+            <div class="error"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
         <?php endif; ?>
 
         <div id="rascunho-aviso" style="display:none; background:#fff3cd; color:#856404; padding:12px 15px; border-radius:6px; margin-bottom:15px; font-size:14px;">
@@ -502,18 +331,12 @@
                 const filiacaoVal = document.getElementById('data_filiacao').value;
                 const saidaVal = document.getElementById('data_saida').value;
                 const situacao = document.getElementById('situacao').value;
-                if (!filiacaoVal) {
-                    document.getElementById('filiacao_display').value = '';
-                    return;
-                }
+                if (!filiacaoVal) { document.getElementById('filiacao_display').value = ''; return; }
                 const filiacao = new Date(filiacaoVal);
                 const fim = (situacao === 'Transferido' || situacao === 'Inativo') && saidaVal ? new Date(saidaVal) : new Date();
                 let anos = fim.getFullYear() - filiacao.getFullYear();
                 let meses = fim.getMonth() - filiacao.getMonth();
-                if (meses < 0) {
-                    anos--;
-                    meses += 12;
-                }
+                if (meses < 0) { anos--; meses += 12; }
                 let texto = '';
                 if (anos > 0) texto += `${anos} ano${anos > 1 ? 's' : ''}`;
                 if (meses > 0) texto += (texto ? ' e ' : '') + `${meses} mês${meses > 1 ? 'es' : ''}`;
@@ -530,10 +353,7 @@
                 const telConj = document.getElementById('telefone_conjuge');
                 nomeConj.disabled = !temConjuge;
                 telConj.disabled = !temConjuge;
-                if (!temConjuge) {
-                    nomeConj.value = '';
-                    telConj.value = '';
-                }
+                if (!temConjuge) { nomeConj.value = ''; telConj.value = ''; }
             });
 
             // Filhos dinâmicos
@@ -596,27 +416,17 @@
             document.getElementById('situacao').addEventListener('change', function() {
                 const dataSaida = document.getElementById('data_saida');
                 dataSaida.disabled = this.value !== 'Transferido';
-                if (this.value !== 'Transferido') {
-                    dataSaida.value = '';
-                    document.getElementById('saida_display').value = '';
-                }
+                if (this.value !== 'Transferido') { dataSaida.value = ''; document.getElementById('saida_display').value = ''; }
                 calcularTempoFiliado();
             });
 
             document.getElementById('data_saida').addEventListener('change', function() {
-                if (!this.value) {
-                    document.getElementById('saida_display').value = '';
-                    calcularTempoFiliado();
-                    return;
-                }
+                if (!this.value) { document.getElementById('saida_display').value = ''; calcularTempoFiliado(); return; }
                 const saida = new Date(this.value);
                 const hoje = new Date();
                 let anos = hoje.getFullYear() - saida.getFullYear();
                 let meses = hoje.getMonth() - saida.getMonth();
-                if (meses < 0) {
-                    anos--;
-                    meses += 12;
-                }
+                if (meses < 0) { anos--; meses += 12; }
                 let texto = '';
                 if (anos > 0) texto += `${anos} ano${anos > 1 ? 's' : ''}`;
                 if (meses > 0) texto += (texto ? ' e ' : '') + `${meses} mês${meses > 1 ? 'es' : ''}`;
@@ -646,25 +456,18 @@
                 }
             }
             document.querySelectorAll('input[type="date"]').forEach(function(input) {
-                input.addEventListener('input', function() {
-                    limitarAno(this);
-                });
-                input.addEventListener('change', function() {
-                    limitarAno(this);
-                });
-                input.addEventListener('blur', function() {
-                    limitarAno(this);
-                });
+                input.addEventListener('input', function() { limitarAno(this); });
+                input.addEventListener('change', function() { limitarAno(this); });
+                input.addEventListener('blur', function() { limitarAno(this); });
             });
 
             // Validação do formulário
             // ===== Rascunho automático (recuperação em caso de falha) =====
             const RASCUNHO_KEY = 'igreja_rascunho_cadastro';
             const formEl = document.getElementById('cadastroForm');
-            const camposSimples = ['nome', 'email', 'cpf', 'telefone', 'endereco', 'data_nascimento', 'sexo',
-                'naturalidade', 'estado_civil', 'nome_conjuge', 'telefone_conjuge', 'batismo_aguas',
-                'ministrio', 'funcao', 'data_filiacao', 'situacao', 'data_saida', 'observacao'
-            ];
+            const camposSimples = ['nome','email','cpf','telefone','endereco','data_nascimento','sexo',
+                'naturalidade','estado_civil','nome_conjuge','telefone_conjuge','batismo_aguas',
+                'ministrio','funcao','data_filiacao','situacao','data_saida','observacao'];
 
             function salvarRascunho() {
                 const dados = {};
@@ -684,7 +487,7 @@
                     const el = document.getElementById(id);
                     if (el && dados[id]) {
                         el.value = dados[id];
-                        el.dispatchEvent(new Event('change'));
+                        el.dispatchEvent(new Event('change')); // atualiza máscaras/cálculos dependentes
                     }
                 });
                 document.getElementById('rascunho-aviso').style.display = 'none';
@@ -695,20 +498,23 @@
                 document.getElementById('rascunho-aviso').style.display = 'none';
             }
 
+            // Se o cadastro anterior deu certo, o rascunho não serve mais - descarta sozinho
             <?php if ($cadastroComSucesso): ?>
-                localStorage.removeItem(RASCUNHO_KEY);
+            localStorage.removeItem(RASCUNHO_KEY);
             <?php else: ?>
-                    (function() {
-                        const bruto = localStorage.getItem(RASCUNHO_KEY);
-                        if (!bruto) return;
-                        const dados = JSON.parse(bruto);
-                        const temConteudo = camposSimples.some(id => dados[id] && dados[id].trim() !== '');
-                        if (temConteudo) {
-                            document.getElementById('rascunho-aviso').style.display = 'block';
-                        }
-                    })();
+            // Ao carregar a página, avisa se existe um rascunho salvo (com algum conteúdo real)
+            (function() {
+                const bruto = localStorage.getItem(RASCUNHO_KEY);
+                if (!bruto) return;
+                const dados = JSON.parse(bruto);
+                const temConteudo = camposSimples.some(id => dados[id] && dados[id].trim() !== '');
+                if (temConteudo) {
+                    document.getElementById('rascunho-aviso').style.display = 'block';
+                }
+            })();
             <?php endif; ?>
 
+            // Salva o rascunho a cada alteração em qualquer campo do formulário
             formEl.addEventListener('input', salvarRascunho);
             formEl.addEventListener('change', salvarRascunho);
 
@@ -722,27 +528,19 @@
 
                 if (nome.length < 3) {
                     alert('O nome deve ter pelo menos 3 caracteres');
-                    e.preventDefault();
-                    return;
-                }
-                /*if (!email) {
-                    alert('O email é obrigatório');
                     e.preventDefault(); return;
-                }*/
+                }
                 if (cpf.length !== 11) {
                     alert('Digite um CPF válido, com 11 números');
-                    e.preventDefault();
-                    return;
+                    e.preventDefault(); return;
                 }
                 if (!telefone) {
                     alert('O telefone é obrigatório');
-                    e.preventDefault();
-                    return;
+                    e.preventDefault(); return;
                 }
                 if (!dataNasc) {
                     alert('A data de nascimento é obrigatória');
-                    e.preventDefault();
-                    return;
+                    e.preventDefault(); return;
                 }
 
                 // Evita envio duplicado: trava o botão assim que o formulário é válido e enviado
@@ -765,5 +563,4 @@
     </script>
 
 </body>
-
 </html>
